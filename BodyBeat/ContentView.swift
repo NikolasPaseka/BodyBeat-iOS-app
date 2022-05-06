@@ -12,18 +12,18 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Plan.title, ascending: true)],
         animation: .default)
-    private var items: FetchedResults<Item>
+    private var plans: FetchedResults<Plan>
+    
+    @State var isNewPlanVisible: Bool = false
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+                ForEach(plans) { plan in
+                    NavigationLink(destination: PlanDetailView(plan: plan)) {
+                        Text(plan.title!)
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -33,8 +33,13 @@ struct ContentView: View {
                     EditButton()
                 }
                 ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                    NavigationLink(destination: NewPlanView(isNewPlanVisible: $isNewPlanVisible),
+                                   isActive: $isNewPlanVisible) {
+                        Button(action: {
+                            isNewPlanVisible = true
+                        }) {
+                            Label("Add Item", systemImage: "plus")
+                        }
                     }
                 }
             }
@@ -44,8 +49,8 @@ struct ContentView: View {
 
     private func addItem() {
         withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+            let newPlan = Plan(context: viewContext)
+            newPlan.title = "Test"
 
             do {
                 try viewContext.save()
@@ -60,7 +65,7 @@ struct ContentView: View {
 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
+            offsets.map { plans[$0] }.forEach(viewContext.delete)
 
             do {
                 try viewContext.save()
