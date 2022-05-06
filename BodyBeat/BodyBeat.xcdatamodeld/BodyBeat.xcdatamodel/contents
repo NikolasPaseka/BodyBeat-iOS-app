@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21E230" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Exercise" representedClassName="Exercise" syncable="YES" codeGenerationType="class">
+        <attribute name="repeats" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="sets" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="plan" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Plan" inverseName="exercises" inverseEntity="Plan"/>
+    </entity>
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
@@ -7,9 +13,11 @@
         <attribute name="timerExercise" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="timerSeries" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Exercise" inverseName="plan" inverseEntity="Exercise"/>
     </entity>
     <elements>
-        <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
-        <element name="Plan" positionX="-105.640625" positionY="-204.5234375" width="128" height="88"/>
+        <element name="Item" positionX="93.953125" positionY="-12.1015625" width="128" height="44"/>
+        <element name="Plan" positionX="-417.5" positionY="14.0859375" width="128" height="14"/>
+        <element name="Exercise" positionX="-105.38671875" positionY="-76.62109375" width="125.734375" height="14"/>
     </elements>
 </model>

@@ -37,11 +37,11 @@ struct LabelTimerView: View {
     }
 }
 
-extension UIPickerView {
-    open override var intrinsicContentSize: CGSize {
-        return CGSize(width: UIView.noIntrinsicMetric , height:  super.intrinsicContentSize.height)
-    }
-}
+//extension UIPickerView {
+//    open override var intrinsicContentSize: CGSize {
+//        return CGSize(width: UIView.noIntrinsicMetric , height:  super.intrinsicContentSize.height)
+//    }
+//}
 
 struct LabelTimerView_Previews: PreviewProvider {
     static var previews: some View {

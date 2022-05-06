@@ -10,6 +10,8 @@ import SwiftUI
 struct NewPlanView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
+    @State var exercises: [Exercise] = []
+    
     @State var title: String
     @State var exerciseTimerMinutes: Int
     @State var exerciseTimerSeconds: Int
@@ -17,6 +19,7 @@ struct NewPlanView: View {
     @State var seriesTimerSeconds: Int
     
     @Binding var isNewPlanVisible: Bool
+    @State var isPlanExercisesVisible: Bool = false
     
     init(isNewPlanVisible: Binding<Bool>) {
         title = "empty"
@@ -35,6 +38,10 @@ struct NewPlanView: View {
         plan.timerExercise = Int16(exerciseTimerMinutes*60 + exerciseTimerSeconds)
         plan.timerSeries = Int16(seriesTimerMinutes*60 + seriesTimerSeconds)
         
+        for exercise in exercises {
+            plan.addToExercises(exercise)
+        }
+        
         do {
             try viewContext.save()
         } catch {
@@ -50,9 +57,13 @@ struct NewPlanView: View {
                 TextField(title, text: $title)
                 LabelTimerView(label: "Exercise timer", minutes: $exerciseTimerMinutes, seconds: $exerciseTimerSeconds)
                 LabelTimerView(label: "Series timer", minutes: $seriesTimerMinutes, seconds: $seriesTimerSeconds)
-                Button("Manage exercises") {
-                    
+                
+                NavigationLink(destination: ExerciseListView(exercises: $exercises), isActive: $isPlanExercisesVisible){
+                    Button("Manage exercises") {
+                        isPlanExercisesVisible = true
+                    }
                 }
+                Text("\(exercises.count)")
             }.padding()
         }
         .navigationTitle("New workout plan")

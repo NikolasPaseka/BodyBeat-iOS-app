@@ -23,11 +23,12 @@ struct ContentView: View {
             List {
                 ForEach(plans) { plan in
                     NavigationLink(destination: PlanDetailView(plan: plan)) {
-                        Text(plan.title!)
+                        Text("\(plan.title!) \(plan.exercises?.count ?? 0)")
                     }
                 }
                 .onDelete(perform: deleteItems)
             }
+            .navigationTitle("Workout plans")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()

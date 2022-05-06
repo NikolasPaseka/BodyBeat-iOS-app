@@ -10,12 +10,29 @@ import SwiftUI
 struct PlanDetailView: View {
     
     var plan: Plan
+    @FetchRequest var exercises: FetchedResults<Exercise>
+    
+    init(plan: Plan) {
+        self.plan = plan
+        self._exercises = FetchRequest(
+            entity: Exercise.entity(),
+            sortDescriptors: [
+                NSSortDescriptor(keyPath: \Exercise.title, ascending: true)
+            ],
+            predicate: NSPredicate(format: "plan == %@", plan)
+        )
+    }
     
     var body: some View {
-        ScrollView {
-            Text("exercise: \(plan.timerExercise) seconds")
-            Text("series: \(plan.timerSeries) seconds")
-        }
+            VStack {
+                Text("exercise: \(plan.timerExercise) seconds")
+                Text("series: \(plan.timerSeries) seconds")
+                List {
+                    ForEach(exercises) { exercise in
+                        Text(exercise.title ?? "no title")
+                    }
+                }
+            }
         .navigationTitle(plan.title ?? "empty")
     }
 }
