@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		38142D2D2836DC12003AC9A0 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38142D2C2836DC12003AC9A0 /* ProgressBarView.swift */; };
+		38142D2F2836E737003AC9A0 /* ConfirmButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38142D2E2836E737003AC9A0 /* ConfirmButtonView.swift */; };
+		38142D312836E9E4003AC9A0 /* SpacerLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38142D302836E9E4003AC9A0 /* SpacerLabelView.swift */; };
+		38142D332836EC55003AC9A0 /* ExerciseListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38142D322836EC55003AC9A0 /* ExerciseListItemView.swift */; };
 		382B87E92825025200A71270 /* BodyBeatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382B87E82825025200A71270 /* BodyBeatApp.swift */; };
 		382B87EB2825025200A71270 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382B87EA2825025200A71270 /* ContentView.swift */; };
 		382B87ED2825025300A71270 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 382B87EC2825025300A71270 /* Assets.xcassets */; };
@@ -25,6 +28,9 @@
 
 /* Begin PBXFileReference section */
 		38142D2C2836DC12003AC9A0 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
+		38142D2E2836E737003AC9A0 /* ConfirmButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmButtonView.swift; sourceTree = "<group>"; };
+		38142D302836E9E4003AC9A0 /* SpacerLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacerLabelView.swift; sourceTree = "<group>"; };
+		38142D322836EC55003AC9A0 /* ExerciseListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListItemView.swift; sourceTree = "<group>"; };
 		382B87E52825025200A71270 /* BodyBeat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BodyBeat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		382B87E82825025200A71270 /* BodyBeatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyBeatApp.swift; sourceTree = "<group>"; };
 		382B87EA2825025200A71270 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -101,6 +107,9 @@
 			children = (
 				38456D7728252C16002E81B4 /* LabelTimerView.swift */,
 				383D6D96282559DD0064D5F2 /* NumberPickerView.swift */,
+				38142D2E2836E737003AC9A0 /* ConfirmButtonView.swift */,
+				38142D302836E9E4003AC9A0 /* SpacerLabelView.swift */,
+				38142D322836EC55003AC9A0 /* ExerciseListItemView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -181,10 +190,13 @@
 				38456D74282529BB002E81B4 /* NewPlanView.swift in Sources */,
 				382B87F22825025300A71270 /* Persistence.swift in Sources */,
 				38F1792D28258EE50056DC96 /* PlanProgressView.swift in Sources */,
+				38142D332836EC55003AC9A0 /* ExerciseListItemView.swift in Sources */,
 				382B87EB2825025200A71270 /* ContentView.swift in Sources */,
 				38456D7828252C16002E81B4 /* LabelTimerView.swift in Sources */,
 				382B87E92825025200A71270 /* BodyBeatApp.swift in Sources */,
 				382B87F52825025300A71270 /* BodyBeat.xcdatamodeld in Sources */,
+				38142D2F2836E737003AC9A0 /* ConfirmButtonView.swift in Sources */,
+				38142D312836E9E4003AC9A0 /* SpacerLabelView.swift in Sources */,
 				383D6D94282557880064D5F2 /* NewExerciseView.swift in Sources */,
 				383D6D97282559DD0064D5F2 /* NumberPickerView.swift in Sources */,
 			);

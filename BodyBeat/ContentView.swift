@@ -27,7 +27,8 @@ struct ContentView: View {
                     }
                 }
                 .onDelete(perform: deleteItems)
-            }
+                .listRowBackground(Color("lighterGrey"))
+            }.background(Color("backgroundGrey"))
             .navigationTitle("Workout plans")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -44,7 +45,6 @@ struct ContentView: View {
                     }
                 }
             }
-            Text("Select an item")
         }
     }
 

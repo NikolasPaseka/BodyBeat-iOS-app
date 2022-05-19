@@ -33,17 +33,31 @@ struct PlanDetailView: View {
             VStack {
                 Text("exercise: \(plan.timerExercise) seconds")
                 Text("series: \(plan.timerSeries) seconds")
-                NavigationLink(destination: PlanProgressView(exercises: getExercisesArr()), isActive: $isPlanProgressVisible) {
-                    Button("Start Workout") {
+                
+                NavigationLink(destination: PlanProgressView(plan: plan, exercises: getExercisesArr()), isActive: $isPlanProgressVisible) {
+                    Button {
                         isPlanProgressVisible = true
+                    } label: {
+                        ConfirmButtonView(buttonLabel: "Start Workout")
                     }
                 }
-                List {
-                    ForEach(exercises) { exercise in
-                        Text(exercise.title ?? "no title")
+                
+                SpacerLabelView(label: "Exercises")
+                    .padding(.top)
+                
+                ForEach(exercises) { exercise in
+                    HStack {
+                        ExerciseListItemView(title: exercise.title ?? "no title",
+                                             sets: Int(exercise.sets),
+                                             repeats: Int(exercise.repeats))
+                            .padding(.top, 4)
+                            .padding(.leading, 12)
+                        Spacer()
                     }
                 }
-            }
+                
+                Spacer()
+            }.background(Color("backgroundGrey"))
         .navigationTitle(plan.title ?? "empty")
     }
 }

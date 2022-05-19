@@ -9,16 +9,18 @@ import SwiftUI
 
 struct PlanProgressView: View {
     
+    var plan: Plan
     @State var exercises: [Exercise]
     @State var currentExercise: Exercise
     @State var currentSet: Int = 1
     
     @State var isProgressBarPresented: Bool = false
     
-    init(exercises: [Exercise]) {
+    init(plan: Plan, exercises: [Exercise]) {
         var exercisesMutable = exercises
         self.currentExercise = exercisesMutable.removeFirst()
         self.exercises = exercisesMutable
+        self.plan = plan
     }
     
     func nextExercise() {
@@ -46,7 +48,8 @@ struct PlanProgressView: View {
                 Text("Done")
             }
         }.sheet(isPresented: $isProgressBarPresented) {
-            ProgressBarView(timeRemaining: State(initialValue: 6), isPresenting: $isProgressBarPresented)
+            ProgressBarView(timeRemaining: State(initialValue: Int(plan.timerExercise)),
+                            isPresenting: $isProgressBarPresented)
                 .padding(50)
         }
     }
@@ -55,6 +58,6 @@ struct PlanProgressView: View {
 
 struct PlanProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        PlanProgressView(exercises: [])
+        PlanProgressView(plan: Plan(), exercises: [])
     }
 }

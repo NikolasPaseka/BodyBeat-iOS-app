@@ -47,7 +47,7 @@ struct ProgressBarView: View {
             Button {
                 isPresenting = false
             } label : {
-                Text("Continue")
+                ConfirmButtonView(buttonLabel: "Continue")
             }
         }
     }
