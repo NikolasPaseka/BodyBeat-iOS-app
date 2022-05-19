@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		38142D2D2836DC12003AC9A0 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38142D2C2836DC12003AC9A0 /* ProgressBarView.swift */; };
 		382B87E92825025200A71270 /* BodyBeatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382B87E82825025200A71270 /* BodyBeatApp.swift */; };
 		382B87EB2825025200A71270 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382B87EA2825025200A71270 /* ContentView.swift */; };
 		382B87ED2825025300A71270 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 382B87EC2825025300A71270 /* Assets.xcassets */; };
@@ -19,9 +20,11 @@
 		38456D74282529BB002E81B4 /* NewPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38456D73282529BB002E81B4 /* NewPlanView.swift */; };
 		38456D7828252C16002E81B4 /* LabelTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38456D7728252C16002E81B4 /* LabelTimerView.swift */; };
 		38456D7A28253D4A002E81B4 /* PlanDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38456D7928253D4A002E81B4 /* PlanDetailView.swift */; };
+		38F1792D28258EE50056DC96 /* PlanProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F1792C28258EE50056DC96 /* PlanProgressView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		38142D2C2836DC12003AC9A0 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		382B87E52825025200A71270 /* BodyBeat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BodyBeat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		382B87E82825025200A71270 /* BodyBeatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyBeatApp.swift; sourceTree = "<group>"; };
 		382B87EA2825025200A71270 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -35,6 +38,7 @@
 		38456D73282529BB002E81B4 /* NewPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlanView.swift; sourceTree = "<group>"; };
 		38456D7728252C16002E81B4 /* LabelTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTimerView.swift; sourceTree = "<group>"; };
 		38456D7928253D4A002E81B4 /* PlanDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanDetailView.swift; sourceTree = "<group>"; };
+		38F1792C28258EE50056DC96 /* PlanProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanProgressView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +81,9 @@
 				38456D7928253D4A002E81B4 /* PlanDetailView.swift */,
 				383D6D91282556120064D5F2 /* ExerciseListView.swift */,
 				383D6D93282557880064D5F2 /* NewExerciseView.swift */,
+				38F1792C28258EE50056DC96 /* PlanProgressView.swift */,
 				383D6D95282559810064D5F2 /* CustomViews */,
+				38142D2C2836DC12003AC9A0 /* ProgressBarView.swift */,
 			);
 			path = BodyBeat;
 			sourceTree = "<group>";
@@ -170,9 +176,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				383D6D92282556120064D5F2 /* ExerciseListView.swift in Sources */,
+				38142D2D2836DC12003AC9A0 /* ProgressBarView.swift in Sources */,
 				38456D7A28253D4A002E81B4 /* PlanDetailView.swift in Sources */,
 				38456D74282529BB002E81B4 /* NewPlanView.swift in Sources */,
 				382B87F22825025300A71270 /* Persistence.swift in Sources */,
+				38F1792D28258EE50056DC96 /* PlanProgressView.swift in Sources */,
 				382B87EB2825025200A71270 /* ContentView.swift in Sources */,
 				38456D7828252C16002E81B4 /* LabelTimerView.swift in Sources */,
 				382B87E92825025200A71270 /* BodyBeatApp.swift in Sources */,

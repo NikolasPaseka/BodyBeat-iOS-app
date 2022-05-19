@@ -64,15 +64,15 @@ struct NewPlanView: View {
                     }
                 }
                 Text("\(exercises.count)")
-            }.padding()
-        }
-        .navigationTitle("New workout plan")
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItemGroup(placement: .navigationBarTrailing) {
-                Button("Save") {
-                    savePlan()
-                    isNewPlanVisible = false
+            }
+            .navigationTitle("New workout plan")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Button("Save") {
+                        savePlan()
+                        isNewPlanVisible = false
+                    }
                 }
             }
         }

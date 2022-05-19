@@ -10,6 +10,14 @@ import SwiftUI
 @main
 struct BodyBeatApp: App {
     let persistenceController = PersistenceController.shared
+    
+    init() {
+        let navBarAppearance = UINavigationBar.appearance()
+                navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.orange]
+                    navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.orange]
+        //UINavigationBar.appearance().tintColor = .green
+        //UIButton.appearance().backgroundColor = .green
+    }
 
     var body: some Scene {
         WindowGroup {

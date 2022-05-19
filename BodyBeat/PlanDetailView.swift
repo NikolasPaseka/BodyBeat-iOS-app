@@ -12,6 +12,8 @@ struct PlanDetailView: View {
     var plan: Plan
     @FetchRequest var exercises: FetchedResults<Exercise>
     
+    @State var isPlanProgressVisible: Bool = false
+    
     init(plan: Plan) {
         self.plan = plan
         self._exercises = FetchRequest(
@@ -23,10 +25,19 @@ struct PlanDetailView: View {
         )
     }
     
+    func getExercisesArr() -> [Exercise] {
+        return exercises.map { $0.self }
+    }
+    
     var body: some View {
             VStack {
                 Text("exercise: \(plan.timerExercise) seconds")
                 Text("series: \(plan.timerSeries) seconds")
+                NavigationLink(destination: PlanProgressView(exercises: getExercisesArr()), isActive: $isPlanProgressVisible) {
+                    Button("Start Workout") {
+                        isPlanProgressVisible = true
+                    }
+                }
                 List {
                     ForEach(exercises) { exercise in
                         Text(exercise.title ?? "no title")
