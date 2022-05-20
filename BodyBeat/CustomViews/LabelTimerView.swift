@@ -21,7 +21,7 @@ struct LabelTimerView: View {
                     Text("\(minute)")
                 }
             }.pickerStyle(WheelPickerStyle())
-                .frame(width: 60)
+                .frame(width: 60, height: 60)
                 .clipped()
                 .compositingGroup()
             Text(":")
@@ -30,7 +30,7 @@ struct LabelTimerView: View {
                     Text("\(second)").tag(second)
                 }
             }.pickerStyle(WheelPickerStyle())
-                .frame(width: 60)
+                .frame(width:60, height: 60)
                 .clipped()
                 .compositingGroup()
         }

@@ -28,13 +28,17 @@ struct NewExerciseView: View {
     var body: some View {
         NavigationView {
             VStack {
-                TextField("Title", text: $title)
+                RoundedTextField(placeHolder: "Exercise title", value: $title)
+                
                 HStack {
                     NumberPickerView(label: "Sets", maxInputRange: 10, selectedNumber: $sets)
                     Text("x")
                     NumberPickerView(label: "Repeats", maxInputRange: 50, selectedNumber: $repeats)
                 }
+                Spacer()
             }
+            .padding()
+            .background(Color("backgroundGrey"))
             .navigationTitle("Add exercise")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -61,5 +65,6 @@ struct NewExerciseView_Previews: PreviewProvider {
     
     static var previews: some View {
         NewExerciseView(exercises: .constant(exercises), isNewExerciseVisible: .constant(false))
+            .preferredColorScheme(.dark)
     }
 }

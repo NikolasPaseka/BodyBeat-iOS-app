@@ -21,7 +21,7 @@ struct NumberPickerView: View {
                     Text("\(number)")
                 }
             }.pickerStyle(WheelPickerStyle())
-                .frame(width: 60, height: 30)
+                .frame(width: 60, height: 60)
                 .clipped()
                 .compositingGroup()
         }
@@ -30,7 +30,7 @@ struct NumberPickerView: View {
 
 extension UIPickerView {
     open override var intrinsicContentSize: CGSize {
-        return CGSize(width: UIView.noIntrinsicMetric , height:  super.intrinsicContentSize.height)
+        return CGSize(width: UIView.noIntrinsicMetric , height:  UIView.noIntrinsicMetric)
     }
 }
 

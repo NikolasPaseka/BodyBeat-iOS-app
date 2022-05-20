@@ -22,7 +22,7 @@ struct NewPlanView: View {
     @State var isPlanExercisesVisible: Bool = false
     
     init(isNewPlanVisible: Binding<Bool>) {
-        title = "empty"
+        title = ""
         exerciseTimerMinutes = 0
         exerciseTimerSeconds = 0
         seriesTimerMinutes = 0
@@ -54,16 +54,19 @@ struct NewPlanView: View {
     var body: some View {
         ScrollView {
             VStack {
-                TextField(title, text: $title)
+                RoundedTextField(placeHolder: "Workout plan title", value: $title)
+                    
                 LabelTimerView(label: "Exercise timer", minutes: $exerciseTimerMinutes, seconds: $exerciseTimerSeconds)
                 LabelTimerView(label: "Series timer", minutes: $seriesTimerMinutes, seconds: $seriesTimerSeconds)
                 
                 NavigationLink(destination: ExerciseListView(exercises: $exercises), isActive: $isPlanExercisesVisible){
-                    Button("Manage exercises") {
+                    Button {
                         isPlanExercisesVisible = true
-                    }
+                    } label: {
+                        ConfirmButtonView(buttonLabel: "Manage exercises: \(exercises.count)")
+                    }.padding()
                 }
-                Text("\(exercises.count)")
+            
             }
             .navigationTitle("New workout plan")
             .navigationBarTitleDisplayMode(.inline)
@@ -74,13 +77,16 @@ struct NewPlanView: View {
                         isNewPlanVisible = false
                     }
                 }
-            }
-        }
+            }.padding()
+            
+            SpacerLabelView(label: "Schedule")
+        }.background(Color("backgroundGrey"))
     }
 }
 
 struct NewPlanView_Previews: PreviewProvider {
     static var previews: some View {
         NewPlanView(isNewPlanVisible: .constant(false))
+            .preferredColorScheme(.dark)
     }
 }

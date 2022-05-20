@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "BBB5992D-E142-4AA5-AB8F-D704332DBC98"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EE0218B5-9C50-4C49-A146-0B8957C5E76C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BodyBeat/NewPlanView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "NewPlanView"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "EE0218B5-9C50-4C49-A146-0B8957C5E76C - 305da13f522211a7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "property wrapper backing initializer of BodyBeat.NewPlanView.title : Swift.String"
+                  moduleName = "BodyBeat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikolaspaseka/Documents/vi1/BodyBeat/BodyBeat/NewPlanView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "EE0218B5-9C50-4C49-A146-0B8957C5E76C - 406344c41350d889"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BodyBeat.NewPlanView.title.getter : Swift.String"
+                  moduleName = "BodyBeat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikolaspaseka/Documents/vi1/BodyBeat/BodyBeat/NewPlanView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "148">
+               </Location>
+               <Location
+                  uuid = "EE0218B5-9C50-4C49-A146-0B8957C5E76C - 2fbaa0c6aa4dc89d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BodyBeat.NewPlanView.title.setter : Swift.String"
+                  moduleName = "BodyBeat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikolaspaseka/Documents/vi1/BodyBeat/BodyBeat/NewPlanView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "168">
+               </Location>
+               <Location
+                  uuid = "EE0218B5-9C50-4C49-A146-0B8957C5E76C - 2d68189a3e11249d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BodyBeat.NewPlanView.title.modify : Swift.String with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "BodyBeat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikolaspaseka/Documents/vi1/BodyBeat/BodyBeat/NewPlanView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "EE0218B5-9C50-4C49-A146-0B8957C5E76C - 586085cbeabe0591"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BodyBeat.NewPlanView.$title.getter : SwiftUI.Binding&lt;Swift.String&gt;"
+                  moduleName = "BodyBeat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikolaspaseka/Documents/vi1/BodyBeat/BodyBeat/NewPlanView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "172">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

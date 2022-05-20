@@ -35,19 +35,52 @@ struct PlanProgressView: View {
     }
     
     var body: some View {
-        VStack {
-            HStack {
-                Text(currentExercise.title ?? "no title")
-                Text("\(currentSet)/\(currentExercise.sets)")
+        ScrollView {
+            VStack {
+                Text("Current training")
+                    .font(.headline)
+                HStack {
+                    ExerciseListItemView(title: currentExercise.title ?? "empty",
+                                         sets: Int(currentExercise.sets),
+                                         repeats: Int(currentExercise.repeats))
+                    Spacer()
+                    Text("\(currentSet)/\(currentExercise.sets)")
+                        .padding(8)
+                        .padding(.leading, 12)
+                        .padding(.trailing, 12)
+                        .background(Color("darkerGreen"))
+                        .cornerRadius(5.0)
+                        .font(.body)
+                }.padding()
+                
+                
+                Button {
+                    isProgressBarPresented.toggle()
+                    nextExercise()
+                } label: {
+                    ConfirmButtonView(buttonLabel: "Done", width: 180)
+                }.padding()
+                
+                Spacer()
+            }.padding()
+            
+            SpacerLabelView(label: "Upcoming excersises")
+            
+            ForEach(exercises) { exercise in
+                HStack {
+                    ExerciseListItemView(title: exercise.title ?? "no title",
+                                         sets: Int(exercise.sets),
+                                         repeats: Int(exercise.repeats))
+                        .padding(.top, 4)
+                        .padding(.leading, 12)
+                    Spacer()
+                }
             }
             
-            Button {
-                isProgressBarPresented.toggle()
-                nextExercise()
-            } label: {
-                Text("Done")
-            }
-        }.sheet(isPresented: $isProgressBarPresented) {
+        }.navigationBarTitleDisplayMode(.inline)
+        .navigationTitle(plan.title ?? "no title")
+        .background(Color("backgroundGrey"))
+        .sheet(isPresented: $isProgressBarPresented) {
             ProgressBarView(timeRemaining: State(initialValue: Int(plan.timerExercise)),
                             isPresenting: $isProgressBarPresented)
                 .padding(50)

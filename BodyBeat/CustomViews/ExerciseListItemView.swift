@@ -16,10 +16,11 @@ struct ExerciseListItemView: View {
         VStack {
             Text(title)
                 .font(.system(size: 18, weight: .medium, design: .default))
+                .frame(maxWidth: .infinity, alignment: .leading)
             
             Text("\(sets) x \(repeats)")
                 .font(.system(size: 13, weight: .regular, design: .default))
-                .frame(alignment: .topLeading)
+                .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
 }

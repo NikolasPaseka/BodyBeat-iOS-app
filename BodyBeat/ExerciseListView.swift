@@ -18,6 +18,7 @@ struct ExerciseListView: View {
                 Text(exercise.title ?? "no title")
             }
         }
+        .background(Color("backgroundGrey"))
         .navigationTitle("Manage exercises")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
