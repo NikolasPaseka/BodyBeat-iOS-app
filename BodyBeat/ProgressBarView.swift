@@ -20,6 +20,16 @@ struct ProgressBarView: View {
         self.numberOfSeconds = timeRemaining.wrappedValue
     }
     
+    func getTimerLabel() -> String {
+        let minutes: Int = timeRemaining / 60
+        let seconds: Int = timeRemaining % 60
+        if seconds < 10 {
+            return "\(minutes):0\(seconds)"
+        } else {
+            return "\(minutes):\(seconds)"
+        }
+    }
+    
     var body: some View {
         VStack {
             ZStack {
@@ -34,7 +44,7 @@ struct ProgressBarView: View {
                     .rotationEffect(Angle(degrees: 270))
                     .animation(.easeInOut, value: 2.0)
                 
-                Text("\(timeRemaining)")
+                Text(getTimerLabel())
                     .onReceive(timer) { _ in
                         if timeRemaining > 0 {
                             progress += 1.0/Float(numberOfSeconds)
@@ -43,13 +53,14 @@ struct ProgressBarView: View {
                             isPresenting = false
                         }
                     }
+                    .font(.title)
             }
             Button {
                 isPresenting = false
             } label : {
                 ConfirmButtonView(buttonLabel: "Continue")
             }
-        }
+        }.interactiveDismissDisabled()
     }
 }
 

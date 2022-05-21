@@ -53,13 +53,12 @@ struct PlanProgressView: View {
                         .font(.body)
                 }.padding()
                 
-                
                 Button {
                     isProgressBarPresented.toggle()
                     nextExercise()
                 } label: {
                     ConfirmButtonView(buttonLabel: "Done", width: 180)
-                }.padding()
+                }
                 
                 Spacer()
             }.padding()

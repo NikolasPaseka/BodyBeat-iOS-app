@@ -55,10 +55,9 @@ struct PlanDetailView: View {
                     Spacer()
                 }
             }
-            
+            .navigationTitle(plan.title ?? "empty")
             Spacer()
         }.background(Color("backgroundGrey"))
-        .navigationTitle(plan.title ?? "empty")
     }
 }
 

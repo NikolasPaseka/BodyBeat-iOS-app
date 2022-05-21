@@ -11,22 +11,25 @@ struct NewPlanView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     @State var exercises: [Exercise] = []
+    @State var schedules: [Schedule] = []
     
-    @State var title: String
-    @State var exerciseTimerMinutes: Int
-    @State var exerciseTimerSeconds: Int
-    @State var seriesTimerMinutes: Int
-    @State var seriesTimerSeconds: Int
+    @State var title: String = ""
+    @State var exerciseTimerMinutes: Int = 0
+    @State var exerciseTimerSeconds: Int = 0
+    @State var seriesTimerMinutes: Int = 0
+    @State var seriesTimerSeconds: Int = 0
     
     @Binding var isNewPlanVisible: Bool
     @State var isPlanExercisesVisible: Bool = false
+    @State var isAddScheduleVisible: Bool = false
     
     init(isNewPlanVisible: Binding<Bool>) {
-        title = ""
-        exerciseTimerMinutes = 0
-        exerciseTimerSeconds = 0
-        seriesTimerMinutes = 0
-        seriesTimerSeconds = 0
+//        title = ""
+//        exerciseTimerMinutes = 0
+//        exerciseTimerSeconds = 0
+//        seriesTimerMinutes = 0
+//        seriesTimerSeconds = 0
+//        wakeUp = Date.now
         self._isNewPlanVisible = isNewPlanVisible
     }
     
@@ -52,7 +55,7 @@ struct NewPlanView: View {
 
     
     var body: some View {
-        ScrollView {
+        VStack {
             VStack {
                 RoundedTextField(placeHolder: "Workout plan title", value: $title)
                     
@@ -64,10 +67,29 @@ struct NewPlanView: View {
                         isPlanExercisesVisible = true
                     } label: {
                         ConfirmButtonView(buttonLabel: "Manage exercises: \(exercises.count)")
-                    }.padding()
+                    }
                 }
+            }.padding()
             
+            VStack {
+                SpacerLabelView(label: "Schedule")
+
+                List {
+                    ForEach(schedules) { schedule in
+                        Text("\(schedule.day ?? "none") \(timeFormatter.string(from: schedule.time ?? Date.now))")
+                    }.listRowBackground(Color("lighterGrey"))
+                    
+                    Button {
+                        isAddScheduleVisible = true
+                    } label: {
+                        HStack {
+                            //Image(.systemName("plus.circle.fill"))
+                            Text("Add to schedule")
+                        }
+                    }.listRowBackground(Color("lighterGrey"))
+                }
             }
+            
             .navigationTitle("New workout plan")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -77,12 +99,20 @@ struct NewPlanView: View {
                         isNewPlanVisible = false
                     }
                 }
-            }.padding()
+            }
+            .sheet(isPresented: $isAddScheduleVisible) {
+                AddScheduleView(schedules: $schedules, isAddScheduleVisible: $isAddScheduleVisible)
+            }
             
-            SpacerLabelView(label: "Schedule")
         }.background(Color("backgroundGrey"))
     }
 }
+
+private let timeFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.timeStyle = .short
+    return formatter
+}()
 
 struct NewPlanView_Previews: PreviewProvider {
     static var previews: some View {

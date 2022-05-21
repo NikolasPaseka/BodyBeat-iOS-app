@@ -11,7 +11,7 @@ struct NewExerciseView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     @Binding var exercises: [Exercise]
-    @State var title: String = "empty"
+    @State var title: String = ""
     @State var sets: Int = 0
     @State var repeats: Int = 0
     

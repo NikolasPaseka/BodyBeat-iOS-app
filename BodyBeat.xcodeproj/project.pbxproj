@@ -24,6 +24,7 @@
 		38456D74282529BB002E81B4 /* NewPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38456D73282529BB002E81B4 /* NewPlanView.swift */; };
 		38456D7828252C16002E81B4 /* LabelTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38456D7728252C16002E81B4 /* LabelTimerView.swift */; };
 		38456D7A28253D4A002E81B4 /* PlanDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38456D7928253D4A002E81B4 /* PlanDetailView.swift */; };
+		386A766428394C600062DD94 /* AddScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386A766328394C600062DD94 /* AddScheduleView.swift */; };
 		38F1792D28258EE50056DC96 /* PlanProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F1792C28258EE50056DC96 /* PlanProgressView.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		38456D73282529BB002E81B4 /* NewPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlanView.swift; sourceTree = "<group>"; };
 		38456D7728252C16002E81B4 /* LabelTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTimerView.swift; sourceTree = "<group>"; };
 		38456D7928253D4A002E81B4 /* PlanDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanDetailView.swift; sourceTree = "<group>"; };
+		386A766328394C600062DD94 /* AddScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScheduleView.swift; sourceTree = "<group>"; };
 		38F1792C28258EE50056DC96 /* PlanProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanProgressView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,6 +93,7 @@
 				383D6D93282557880064D5F2 /* NewExerciseView.swift */,
 				38F1792C28258EE50056DC96 /* PlanProgressView.swift */,
 				38142D2C2836DC12003AC9A0 /* ProgressBarView.swift */,
+				386A766328394C600062DD94 /* AddScheduleView.swift */,
 				383D6D95282559810064D5F2 /* CustomViews */,
 			);
 			path = BodyBeat;
@@ -195,6 +198,7 @@
 				38F1792D28258EE50056DC96 /* PlanProgressView.swift in Sources */,
 				38142D332836EC55003AC9A0 /* ExerciseListItemView.swift in Sources */,
 				382B87EB2825025200A71270 /* ContentView.swift in Sources */,
+				386A766428394C600062DD94 /* AddScheduleView.swift in Sources */,
 				38456D7828252C16002E81B4 /* LabelTimerView.swift in Sources */,
 				382B87E92825025200A71270 /* BodyBeatApp.swift in Sources */,
 				382B87F52825025300A71270 /* BodyBeat.xcdatamodeld in Sources */,

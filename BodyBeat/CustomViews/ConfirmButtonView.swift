@@ -13,7 +13,8 @@ struct ConfirmButtonView: View {
     
     var body: some View {
         Text(buttonLabel)
-            .font(.system(size: 20, weight: .semibold, design: .default))
+            //.font(.system(size: 20, weight: .semibold, design: .default))
+            .font(.headline)
             .frame(width: CGFloat(self.width ?? 210.0), height: 50)
             .foregroundColor(.white)
             .background(Color("darkerOrange"))
