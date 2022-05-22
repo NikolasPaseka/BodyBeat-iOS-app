@@ -8,41 +8,13 @@
 import SwiftUI
 import MapKit
 
-struct Park: Hashable, Codable {
-    var id: Int
-    var name: String
-    var latitude: Double
-    var longitude: Double
-}
-
 struct AnnotatedItem: Identifiable {
     var id = UUID()
     var coordinate: CLLocationCoordinate2D
 }
 
-private class ViewModel: ObservableObject {
-    @Published var parks: [Park] = []
-    
-    func fetch() {
-        guard let url = URL(string: "https://2e7b99d4-a7bd-4d8d-a097-7704b567b206.mock.pstmn.io/parks") else { return }
-        let task = URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data, error == nil else { return }
-            
-            do {
-                let parks = try JSONDecoder().decode([Park].self, from: data)
-                DispatchQueue.main.async {
-                    self.parks = parks
-                }
-            } catch {
-                print(error)
-            }
-        }
-        task.resume()
-    }
-}
-
 struct ParksView: View {
-    @StateObject private var viewModel = ViewModel()
+    @StateObject var viewModel = ParksViewModel()
     
     @State var renderMode: Int = 0
     
@@ -73,9 +45,12 @@ struct ParksView: View {
                 } else {
                     List {
                         ForEach(viewModel.parks, id: \.self) { park in
-                            Text(park.name)
+                            NavigationLink(destination: ParkDetailView(park: park)) {
+                                Text(park.name)
+                            }
                         }.listRowBackground(Color.lighterGrey)
-                    }.onAppear {
+                    }
+                    .onAppear {
                         viewModel.fetch()
                     }
                 }

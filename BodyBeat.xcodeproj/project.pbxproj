@@ -30,6 +30,7 @@
 		387B7E8F283A49C3000A7CC8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B7E8E283A49C3000A7CC8 /* Color.swift */; };
 		387B7E91283A8DC7000A7CC8 /* ParksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B7E90283A8DC7000A7CC8 /* ParksView.swift */; };
 		387B7E93283AAB8C000A7CC8 /* ParkDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B7E92283AAB8C000A7CC8 /* ParkDetailView.swift */; };
+		387B7E96283AAC13000A7CC8 /* ParksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B7E95283AAC13000A7CC8 /* ParksViewModel.swift */; };
 		38F1792D28258EE50056DC96 /* PlanProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F1792C28258EE50056DC96 /* PlanProgressView.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		387B7E8E283A49C3000A7CC8 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		387B7E90283A8DC7000A7CC8 /* ParksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParksView.swift; sourceTree = "<group>"; };
 		387B7E92283AAB8C000A7CC8 /* ParkDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkDetailView.swift; sourceTree = "<group>"; };
+		387B7E95283AAC13000A7CC8 /* ParksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParksViewModel.swift; sourceTree = "<group>"; };
 		38F1792C28258EE50056DC96 /* PlanProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanProgressView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,6 +100,7 @@
 				382B87F32825025300A71270 /* BodyBeat.xcdatamodeld */,
 				382B87EE2825025300A71270 /* Preview Content */,
 				387B7E8D283A48BC000A7CC8 /* Extensions */,
+				387B7E94283AABF3000A7CC8 /* ViewModel */,
 				386A7665283993AF0062DD94 /* View */,
 				386A766B2839954F0062DD94 /* CustomComponent */,
 			);
@@ -149,6 +152,14 @@
 				387B7E8E283A49C3000A7CC8 /* Color.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		387B7E94283AABF3000A7CC8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				387B7E95283AAC13000A7CC8 /* ParksViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,6 +254,7 @@
 				386A76722839954F0062DD94 /* NumberPickerView.swift in Sources */,
 				386A7679283995790062DD94 /* PlanListView.swift in Sources */,
 				387B7E8C283A1E0F000A7CC8 /* ScheduleView.swift in Sources */,
+				387B7E96283AAC13000A7CC8 /* ParksViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
