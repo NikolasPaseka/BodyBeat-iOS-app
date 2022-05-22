@@ -18,7 +18,7 @@ struct ContentView: View {
                     Text("Plans")
                 }
             
-            Text("Schedule")
+            ScheduleView()
                 .tabItem {
                     Image(systemName: "calendar")
                     Text("Schedule")
@@ -36,6 +36,7 @@ struct ContentView: View {
                     Text("Profile")
                 }
         }
+        .accentColor(Color("lighterOrange"))
     }
 }
 

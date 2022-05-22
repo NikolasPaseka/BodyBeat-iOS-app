@@ -44,6 +44,9 @@ struct NewPlanView: View {
         for exercise in exercises {
             plan.addToExercises(exercise)
         }
+        for schedule in schedules {
+            plan.addToSchedules(schedule)
+        }
         
         do {
             try viewContext.save()
