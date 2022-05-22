@@ -16,9 +16,9 @@ struct ExerciseListView: View {
         List {
             ForEach(exercises) { exercise in
                 Text(exercise.title ?? "no title")
-            }
+            }.listRowBackground(Color.lighterGrey)
         }
-        .background(Color("backgroundGrey"))
+        .background(Color.backgroundColor)
         .navigationTitle("Manage exercises")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {

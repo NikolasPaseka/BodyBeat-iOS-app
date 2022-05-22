@@ -36,7 +36,7 @@ struct ContentView: View {
                     Text("Profile")
                 }
         }
-        .accentColor(Color("lighterOrange"))
+        .accentColor(Color.lighterOrange)
     }
 }
 

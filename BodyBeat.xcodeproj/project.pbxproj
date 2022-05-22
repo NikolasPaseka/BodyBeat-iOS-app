@@ -27,6 +27,7 @@
 		386A76772839954F0062DD94 /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386A76712839954F0062DD94 /* RoundedTextField.swift */; };
 		386A7679283995790062DD94 /* PlanListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386A7678283995790062DD94 /* PlanListView.swift */; };
 		387B7E8C283A1E0F000A7CC8 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B7E8B283A1E0F000A7CC8 /* ScheduleView.swift */; };
+		387B7E8F283A49C3000A7CC8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B7E8E283A49C3000A7CC8 /* Color.swift */; };
 		38F1792D28258EE50056DC96 /* PlanProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F1792C28258EE50056DC96 /* PlanProgressView.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		386A76712839954F0062DD94 /* RoundedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
 		386A7678283995790062DD94 /* PlanListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanListView.swift; sourceTree = "<group>"; };
 		387B7E8B283A1E0F000A7CC8 /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
+		387B7E8E283A49C3000A7CC8 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		38F1792C28258EE50056DC96 /* PlanProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanProgressView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,6 +92,7 @@
 				382B87EC2825025300A71270 /* Assets.xcassets */,
 				382B87F12825025300A71270 /* Persistence.swift */,
 				382B87F32825025300A71270 /* BodyBeat.xcdatamodeld */,
+				387B7E8D283A48BC000A7CC8 /* Extensions */,
 				382B87EE2825025300A71270 /* Preview Content */,
 				386A7665283993AF0062DD94 /* View */,
 				386A766B2839954F0062DD94 /* CustomComponent */,
@@ -132,6 +135,14 @@
 				386A76712839954F0062DD94 /* RoundedTextField.swift */,
 			);
 			path = CustomComponent;
+			sourceTree = "<group>";
+		};
+		387B7E8D283A48BC000A7CC8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				387B7E8E283A49C3000A7CC8 /* Color.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,6 +228,7 @@
 				386A766428394C600062DD94 /* AddScheduleView.swift in Sources */,
 				386A76732839954F0062DD94 /* LabelTimerView.swift in Sources */,
 				386A76742839954F0062DD94 /* ExerciseListItemView.swift in Sources */,
+				387B7E8F283A49C3000A7CC8 /* Color.swift in Sources */,
 				382B87E92825025200A71270 /* BodyBeatApp.swift in Sources */,
 				382B87F52825025300A71270 /* BodyBeat.xcdatamodeld in Sources */,
 				383D6D94282557880064D5F2 /* NewExerciseView.swift in Sources */,

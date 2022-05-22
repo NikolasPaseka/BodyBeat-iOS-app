@@ -17,7 +17,7 @@ struct BodyBeatApp: App {
                     //navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.orange]
         //UINavigationBar.appearance().tintColor = .green
         //UIButton.appearance().backgroundColor = .green
-        UINavigationBar.appearance().backgroundColor = UIColor(Color("backgroundGrey"))
+        UINavigationBar.appearance().backgroundColor = UIColor(Color.backgroundColor)
         UITableView.appearance().backgroundColor = .clear
     }
 

@@ -80,7 +80,7 @@ struct NewPlanView: View {
                 List {
                     ForEach(schedules) { schedule in
                         Text("\(schedule.day ?? "none") \(timeFormatter.string(from: schedule.time ?? Date.now))")
-                    }.listRowBackground(Color("lighterGrey"))
+                    }.listRowBackground(Color.lighterGrey)
                     
                     Button {
                         isAddScheduleVisible = true
@@ -89,7 +89,7 @@ struct NewPlanView: View {
                             //Image(.systemName("plus.circle.fill"))
                             Text("Add to schedule")
                         }
-                    }.listRowBackground(Color("lighterGrey"))
+                    }.listRowBackground(Color.lighterGrey)
                 }
             }
             
@@ -107,7 +107,7 @@ struct NewPlanView: View {
                 AddScheduleView(schedules: $schedules, isAddScheduleVisible: $isAddScheduleVisible)
             }
             
-        }.background(Color("backgroundGrey"))
+        }.background(Color.backgroundColor)
     }
 }
 

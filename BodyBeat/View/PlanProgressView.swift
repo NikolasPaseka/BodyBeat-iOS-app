@@ -48,7 +48,7 @@ struct PlanProgressView: View {
                         .padding(8)
                         .padding(.leading, 12)
                         .padding(.trailing, 12)
-                        .background(Color("darkerGreen"))
+                        .background(Color.darkerGreen)
                         .cornerRadius(5.0)
                         .font(.body)
                 }.padding()
@@ -78,7 +78,7 @@ struct PlanProgressView: View {
             
         }.navigationBarTitleDisplayMode(.inline)
         .navigationTitle(plan.title ?? "no title")
-        .background(Color("backgroundGrey"))
+        .background(Color.backgroundColor)
         .sheet(isPresented: $isProgressBarPresented) {
             ProgressBarView(timeRemaining: State(initialValue: Int(plan.timerExercise)),
                             isPresenting: $isProgressBarPresented)

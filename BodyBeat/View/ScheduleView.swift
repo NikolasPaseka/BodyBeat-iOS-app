@@ -30,7 +30,7 @@ struct ScheduleView: View {
                 FilteredList(filter: day)
             }
             .navigationTitle("Schedule")
-            .background(Color("backgroundGrey"))
+            .background(Color.backgroundColor)
         }
     }
 }
@@ -52,9 +52,22 @@ struct FilteredList: View {
     var body: some View {
         List {
             ForEach(schedules) { schedule in
-                Text(schedule.plan?.title ?? "none")
-                Text(timeFormatter.string(from: schedule.time ?? Date.now))
-            }.listRowBackground(Color("lighterGrey"))
+                ScheduleRowItem(title: schedule.plan?.title ?? "none", time: schedule.time ?? Date.now)
+            }.listRowBackground(Color.lighterGrey)
+        }
+    }
+}
+
+struct ScheduleRowItem: View {
+    var title: String
+    var time: Date
+    
+    var body: some View {
+        VStack {
+            Text(title)
+                .font(.headline)
+            Text(timeFormatter.string(from: time))
+                .font(.subheadline)
         }
     }
 }
@@ -99,7 +112,7 @@ struct DayPickerView: View {
                 if (isCircleVisible[index]) {
                     Circle()
                         //.foregroundColor(Color("lighterOrange"))
-                        .foregroundColor(Color("lighterOrange"))
+                        .foregroundColor(Color.lighterOrange)
                         .frame(width: 48, height: 48)
                 }
                 Text(dayLabel)

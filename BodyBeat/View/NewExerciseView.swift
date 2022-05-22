@@ -38,7 +38,7 @@ struct NewExerciseView: View {
                 Spacer()
             }
             .padding()
-            .background(Color("backgroundGrey"))
+            .background(Color.backgroundColor)
             .navigationTitle("Add exercise")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
