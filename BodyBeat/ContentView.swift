@@ -24,7 +24,7 @@ struct ContentView: View {
                     Text("Schedule")
                 }
             
-            Text("Parks")
+            ParksView()
                 .tabItem {
                     Image(systemName: "location")
                     Text("Parks")
