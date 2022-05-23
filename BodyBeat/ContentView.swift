@@ -30,7 +30,7 @@ struct ContentView: View {
                     Text("Parks")
                 }
             
-            Text("Profile")
+            ProfileSignInView()
                 .tabItem {
                     Image(systemName: "person.fill")
                     Text("Profile")
