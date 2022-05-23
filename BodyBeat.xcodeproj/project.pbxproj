@@ -21,6 +21,7 @@
 		384E936F283B9E6F0057ACAF /* ProfileSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384E936E283B9E6F0057ACAF /* ProfileSignInView.swift */; };
 		384E9371283BCC260057ACAF /* ProfileRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384E9370283BCC260057ACAF /* ProfileRegistrationView.swift */; };
 		384E9373283BCD5C0057ACAF /* FormInputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384E9372283BCD5C0057ACAF /* FormInputTextField.swift */; };
+		384E9376283BD1470057ACAF /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384E9375283BD1470057ACAF /* SplashScreen.swift */; };
 		386A766428394C600062DD94 /* AddScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386A766328394C600062DD94 /* AddScheduleView.swift */; };
 		386A76722839954F0062DD94 /* NumberPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386A766C2839954F0062DD94 /* NumberPickerView.swift */; };
 		386A76732839954F0062DD94 /* LabelTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386A766D2839954F0062DD94 /* LabelTimerView.swift */; };
@@ -53,6 +54,7 @@
 		384E936E283B9E6F0057ACAF /* ProfileSignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSignInView.swift; sourceTree = "<group>"; };
 		384E9370283BCC260057ACAF /* ProfileRegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRegistrationView.swift; sourceTree = "<group>"; };
 		384E9372283BCD5C0057ACAF /* FormInputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormInputTextField.swift; sourceTree = "<group>"; };
+		384E9375283BD1470057ACAF /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		386A766328394C600062DD94 /* AddScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScheduleView.swift; sourceTree = "<group>"; };
 		386A766C2839954F0062DD94 /* NumberPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberPickerView.swift; sourceTree = "<group>"; };
 		386A766D2839954F0062DD94 /* LabelTimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelTimerView.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				382B87E82825025200A71270 /* BodyBeatApp.swift */,
+				384E9375283BD1470057ACAF /* SplashScreen.swift */,
 				382B87EA2825025200A71270 /* ContentView.swift */,
 				382B87EC2825025300A71270 /* Assets.xcassets */,
 				382B87F12825025300A71270 /* Persistence.swift */,
@@ -250,6 +253,7 @@
 				384E936F283B9E6F0057ACAF /* ProfileSignInView.swift in Sources */,
 				382B87F22825025300A71270 /* Persistence.swift in Sources */,
 				38F1792D28258EE50056DC96 /* PlanProgressView.swift in Sources */,
+				384E9376283BD1470057ACAF /* SplashScreen.swift in Sources */,
 				386A76762839954F0062DD94 /* ConfirmButtonView.swift in Sources */,
 				382B87EB2825025200A71270 /* ContentView.swift in Sources */,
 				384E9371283BCC260057ACAF /* ProfileRegistrationView.swift in Sources */,
@@ -399,6 +403,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"BodyBeat/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BodyBeat/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -427,6 +432,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"BodyBeat/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BodyBeat/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
