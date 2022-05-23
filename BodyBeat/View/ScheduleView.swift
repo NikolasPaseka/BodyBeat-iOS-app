@@ -12,23 +12,21 @@ struct ScheduleView: View {
     @State var day: String = "monday"
     
     
-//    func updateSchedules() {
-//        self._schedules = FetchRequest(
-//            entity: Schedule.entity(),
-//            sortDescriptors: [
-//                NSSortDescriptor(keyPath: \Schedule.day, ascending: true)
-//            ],
-//            predicate: NSPredicate(format: "day ==%@", day)
-//        )
-//    }
-    
     var body: some View {
         NavigationView {
             VStack {
                 DayRowView(selectedDay: $day)
-                    .padding()
+                    //.padding(8)
                 FilteredList(filter: day)
+                
+                Spacer()
+                Text("Monthly completition")
+                    .font(.title.bold())
+                MonthlyProgressView()
+                    .padding()
             }
+            .padding()
+            .frame(maxWidth: .infinity)
             .navigationTitle("Schedule")
             .background(Color.backgroundColor)
         }
@@ -50,11 +48,9 @@ struct FilteredList: View {
     }
     
     var body: some View {
-        List {
-            ForEach(schedules) { schedule in
-                ScheduleRowItem(title: schedule.plan?.title ?? "none", time: schedule.time ?? Date.now)
-            }.listRowBackground(Color.lighterGrey)
-        }
+        ForEach(schedules) { schedule in
+            ScheduleRowItem(title: schedule.plan?.title ?? "none", time: schedule.time ?? Date.now)
+        }.listRowBackground(Color.lighterGrey)
     }
 }
 
@@ -65,10 +61,13 @@ struct ScheduleRowItem: View {
     var body: some View {
         VStack {
             Text(title)
-                .font(.headline)
+                .font(.title3.bold())
+                .frame(maxWidth: .infinity, alignment: .leading)
             Text(timeFormatter.string(from: time))
                 .font(.subheadline)
+                .frame(maxWidth: .infinity, alignment: .leading)
         }
+        .padding(8)
     }
 }
 
@@ -86,6 +85,7 @@ struct DayRowView: View {
             DayPickerView(dayLabel: "SAT", day: "saturday", isCircleVisible: $daysSelection, index: 5, selectedDay: $selectedDay)
             DayPickerView(dayLabel: "SUN", day: "sunday", isCircleVisible: $daysSelection, index: 6, selectedDay: $selectedDay)
         }
+        .frame(maxWidth: .infinity)
     }
 }
 
@@ -120,6 +120,79 @@ struct DayPickerView: View {
                     .foregroundColor(.white)
             }
         }
+    }
+}
+
+struct MonthlyProgressView: View {
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \WorkoutLog.date, ascending: false)],
+        animation: .default)
+    private var workoutLogs: FetchedResults<WorkoutLog>
+    
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Schedule.time, ascending: false)],
+        animation: .default)
+    private var schedules: FetchedResults<Schedule>
+    
+    @State private var monthlyCompletion: Double = 0
+    
+    
+    var body: some View {
+        VStack {
+            ZStack {
+                Circle()
+                    .stroke(lineWidth: 20.0)
+                    .opacity(0.20)
+                    .foregroundColor(.gray)
+                Circle()
+                    .trim(from: 0.0, to: CGFloat(min(monthlyCompletion, 1.0)))
+                    .stroke(style: StrokeStyle(lineWidth: 12.0, lineCap: .round, lineJoin: .round))
+                    .foregroundColor(Color.lighterGreen)
+                    .rotationEffect(Angle(degrees: 270))
+                    .animation(.easeOut, value: 5)
+                Text("\(Int(monthlyCompletion*100)) %")
+                    .font(.title.bold())
+            }
+            .frame(width: 210, height: 210)
+            .onAppear {
+                monthlyCompletion = getMonthlyCompletion()
+            }
+            
+            //Text("\(getMonthlyCompletion())")
+            //Text("\(workoutLogs.count)")
+            //Text("\(Calendar.current.startOfDay(for: Date()))")
+            //Text("\(Date().dayOfTheWeek())")
+        }
+    }
+    
+    func getMonthlyCompletion() -> Double {
+
+        var numbersOfDays: [String:Int] = [:]
+        
+        let calendar = Calendar.current
+        let date = Date()
+
+        let interval = calendar.dateInterval(of: .month, for: date)!
+        //print(interval)
+
+        // Compute difference in days:
+        //let days = calendar.dateComponents([.weekday], from: interval.start, to: interval.end).weekday!
+        
+        let dayDurationInSeconds: TimeInterval = 60*60*24
+        for dat in stride(from: interval.start, to: interval.end, by: dayDurationInSeconds) {
+           // print(date.dayOfTheWeek(day: dat))
+            numbersOfDays[date.dayOfTheWeek(day: dat), default: 0] += 1
+        }
+        
+        var numberOfSchedules: Int = 0
+        for schedule in schedules {
+            numberOfSchedules += numbersOfDays[schedule.day ?? "none"] ?? 0
+        }
+//        print(days)
+//        print(numbersOfDays)
+//        print(numberOfSchedules)
+        
+        return Double(workoutLogs.count)/Double(numberOfSchedules)
     }
 }
 

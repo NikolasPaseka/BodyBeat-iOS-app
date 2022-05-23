@@ -11,6 +11,8 @@ struct ProfileSignInView: View {
     @State var email: String = ""
     @State var password: String = ""
     
+    @State var isVisible: Bool = false
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -23,7 +25,7 @@ struct ProfileSignInView: View {
 //                    .frame(width: 330)
                 FormInputTextField(image: "person.fill", label: "Email Address", value: $email, isPassword: false)
                 FormInputTextField(image: "lock.fill", label: "Password", value: $password, isPassword: true)
-
+                
                 ConfirmButtonView(buttonLabel: "Sign in", width: 150)
                     .padding()
                 
@@ -31,10 +33,14 @@ struct ProfileSignInView: View {
                     Text("Don't have account")
                         .font(.body)
                     Text("|")
-                    NavigationLink(destination: ProfileRegistrationView()) {
-                        Text("Register now")
-                            .foregroundColor(Color.lighterOrange)
-                            .font(.body)
+                    NavigationLink(destination: ProfileRegistrationView(isVisible: $isVisible), isActive: $isVisible) {
+                        Button {
+                            isVisible = true
+                        } label: {
+                            Text("Register now")
+                                .foregroundColor(Color.lighterOrange)
+                                .font(.body)
+                        }
                     }
                 }
                 .padding()

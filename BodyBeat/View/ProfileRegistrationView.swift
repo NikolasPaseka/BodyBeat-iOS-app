@@ -11,6 +11,11 @@ struct ProfileRegistrationView: View {
     @State var email: String = ""
     @State var password: String = ""
     @State var repeatPassword: String = ""
+    @Binding var isVisible: Bool
+    
+    init(isVisible: Binding<Bool>) {
+        self._isVisible = isVisible
+    }
     
     var body: some View {
         VStack {
@@ -23,8 +28,12 @@ struct ProfileRegistrationView: View {
             FormInputTextField(image: "lock.fill", label: "Password", value: $password, isPassword: true)
             FormInputTextField(image: "lock.fill", label: "Repeat password", value: $repeatPassword, isPassword: true)
             
-            ConfirmButtonView(buttonLabel: "Register", width: 150)
-                .padding()
+            Button {
+                isVisible = false
+            } label: {
+                ConfirmButtonView(buttonLabel: "Register", width: 150)
+                    .padding()
+            }
             
             Spacer()
         }
@@ -36,7 +45,7 @@ struct ProfileRegistrationView: View {
 
 struct ProfileRegistrationView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileRegistrationView()
+        ProfileRegistrationView(isVisible: .constant(false))
             .preferredColorScheme(.dark)
     }
 }

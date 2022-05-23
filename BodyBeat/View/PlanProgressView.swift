@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PlanProgressView: View {
+    @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.dismiss) var dismiss
     
     var plan: Plan
     @State var exercises: [Exercise]
@@ -15,22 +17,39 @@ struct PlanProgressView: View {
     @State var currentSet: Int = 1
     
     @State var isProgressBarPresented: Bool = false
+    @State var isPlanProgressDonePresented: Bool = false
     
-    init(plan: Plan, exercises: [Exercise]) {
-        var exercisesMutable = exercises
-        self.currentExercise = exercisesMutable.removeFirst()
-        self.exercises = exercisesMutable
-        self.plan = plan
-    }
+//    init(plan: Plan, exercises: [Exercise], isPlanProgressVisible: Binding<Bool>) {
+//        var exercisesMutable = exercises
+//        self.currentExercise = exercisesMutable.removeFirst()
+//        self.exercises = exercisesMutable
+//        self.plan = plan
+//        self._isPlanProgressVisible = isPlanProgressVisible
+//    }
     
     func nextExercise() {
         if (currentSet < currentExercise.sets) {
             currentSet += 1
+            isProgressBarPresented = true
         } else if (!exercises.isEmpty) {
             currentExercise = exercises.removeFirst()
             currentSet = 1
+            isProgressBarPresented = true
         } else {
-            // TODO
+            workoutDone()
+            isPlanProgressDonePresented = true
+        }
+    }
+    
+    func workoutDone() {
+        let log = WorkoutLog(context: viewContext)
+        log.date = Date.now
+
+        do {
+            try viewContext.save()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
     
@@ -54,7 +73,6 @@ struct PlanProgressView: View {
                 }.padding()
                 
                 Button {
-                    isProgressBarPresented.toggle()
                     nextExercise()
                 } label: {
                     ConfirmButtonView(buttonLabel: "Done", width: 180)
@@ -84,12 +102,18 @@ struct PlanProgressView: View {
                             isPresenting: $isProgressBarPresented)
                 .padding(50)
         }
+        .sheet(isPresented: $isPlanProgressDonePresented) {
+            PlanProgressDoneView(plan: plan)
+                .onDisappear {
+                    dismiss()
+                }
+        }
     }
 }
 
 
 struct PlanProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        PlanProgressView(plan: Plan(), exercises: [])
+        PlanProgressView(plan: Plan(), exercises: [], currentExercise: Exercise())
     }
 }

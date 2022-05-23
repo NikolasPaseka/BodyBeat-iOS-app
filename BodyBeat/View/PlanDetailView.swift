@@ -29,12 +29,19 @@ struct PlanDetailView: View {
         return exercises.map { $0.self }
     }
     
+    func getFirstExercise() -> Exercise {
+        var arr = exercises.map { $0.self }
+        return arr.removeFirst()
+    }
+    
     var body: some View {
         VStack {
             Text("exercise: \(plan.timerExercise) seconds")
             Text("series: \(plan.timerSeries) seconds")
             
-            NavigationLink(destination: PlanProgressView(plan: plan, exercises: getExercisesArr()), isActive: $isPlanProgressVisible) {
+            NavigationLink(destination: PlanProgressView(plan: plan,
+                                                         exercises: getExercisesArr(),
+                                                         currentExercise: getFirstExercise()), isActive: $isPlanProgressVisible) {
                 Button {
                     isPlanProgressVisible = true
                 } label: {

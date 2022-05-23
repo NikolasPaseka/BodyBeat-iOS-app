@@ -22,6 +22,8 @@
 		384E9371283BCC260057ACAF /* ProfileRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384E9370283BCC260057ACAF /* ProfileRegistrationView.swift */; };
 		384E9373283BCD5C0057ACAF /* FormInputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384E9372283BCD5C0057ACAF /* FormInputTextField.swift */; };
 		384E9376283BD1470057ACAF /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384E9375283BD1470057ACAF /* SplashScreen.swift */; };
+		384E9378283BE9680057ACAF /* PlanProgressDoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384E9377283BE9680057ACAF /* PlanProgressDoneView.swift */; };
+		384E937D283BFE9F0057ACAF /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384E937C283BFE9F0057ACAF /* Date.swift */; };
 		386A766428394C600062DD94 /* AddScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386A766328394C600062DD94 /* AddScheduleView.swift */; };
 		386A76722839954F0062DD94 /* NumberPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386A766C2839954F0062DD94 /* NumberPickerView.swift */; };
 		386A76732839954F0062DD94 /* LabelTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386A766D2839954F0062DD94 /* LabelTimerView.swift */; };
@@ -55,6 +57,8 @@
 		384E9370283BCC260057ACAF /* ProfileRegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRegistrationView.swift; sourceTree = "<group>"; };
 		384E9372283BCD5C0057ACAF /* FormInputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormInputTextField.swift; sourceTree = "<group>"; };
 		384E9375283BD1470057ACAF /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
+		384E9377283BE9680057ACAF /* PlanProgressDoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanProgressDoneView.swift; sourceTree = "<group>"; };
+		384E937C283BFE9F0057ACAF /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		386A766328394C600062DD94 /* AddScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScheduleView.swift; sourceTree = "<group>"; };
 		386A766C2839954F0062DD94 /* NumberPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberPickerView.swift; sourceTree = "<group>"; };
 		386A766D2839954F0062DD94 /* LabelTimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelTimerView.swift; sourceTree = "<group>"; };
@@ -101,6 +105,7 @@
 		382B87E72825025200A71270 /* BodyBeat */ = {
 			isa = PBXGroup;
 			children = (
+				384E9379283BF2500057ACAF /* Utils */,
 				382B87E82825025200A71270 /* BodyBeatApp.swift */,
 				384E9375283BD1470057ACAF /* SplashScreen.swift */,
 				382B87EA2825025200A71270 /* ContentView.swift */,
@@ -124,6 +129,13 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		384E9379283BF2500057ACAF /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		386A7665283993AF0062DD94 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +145,7 @@
 				383D6D93282557880064D5F2 /* NewExerciseView.swift */,
 				38F1792C28258EE50056DC96 /* PlanProgressView.swift */,
 				38142D2C2836DC12003AC9A0 /* ProgressBarView.swift */,
+				384E9377283BE9680057ACAF /* PlanProgressDoneView.swift */,
 				386A766328394C600062DD94 /* AddScheduleView.swift */,
 				386A7678283995790062DD94 /* PlanListView.swift */,
 				387B7E8B283A1E0F000A7CC8 /* ScheduleView.swift */,
@@ -162,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				387B7E8E283A49C3000A7CC8 /* Color.swift */,
+				384E937C283BFE9F0057ACAF /* Date.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -246,8 +260,10 @@
 			files = (
 				383D6D92282556120064D5F2 /* ExerciseListView.swift in Sources */,
 				386A76772839954F0062DD94 /* RoundedTextField.swift in Sources */,
+				384E9378283BE9680057ACAF /* PlanProgressDoneView.swift in Sources */,
 				386A76752839954F0062DD94 /* SpacerLabelView.swift in Sources */,
 				38142D2D2836DC12003AC9A0 /* ProgressBarView.swift in Sources */,
+				384E937D283BFE9F0057ACAF /* Date.swift in Sources */,
 				38456D7A28253D4A002E81B4 /* PlanDetailView.swift in Sources */,
 				38456D74282529BB002E81B4 /* NewPlanView.swift in Sources */,
 				384E936F283B9E6F0057ACAF /* ProfileSignInView.swift in Sources */,
