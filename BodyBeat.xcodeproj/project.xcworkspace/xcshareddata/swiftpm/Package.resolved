@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Cloudinary",
+        "repositoryURL": "https://github.com/cloudinary/cloudinary_ios.git",
+        "state": {
+          "branch": null,
+          "revision": "b12303417088fa15e9ea9569890ab85005d261fa",
+          "version": "3.2.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

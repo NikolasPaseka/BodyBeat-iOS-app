@@ -16,6 +16,7 @@ struct AnnotatedItem: Identifiable {
 struct ParksView: View {
     @StateObject var viewModel = ParksViewModel()
     
+    @State var isNewParkVisible: Bool = false
     @State var renderMode: Int = 0
     
     func getPointsOfInterest() -> [AnnotatedItem] {
@@ -57,6 +58,18 @@ struct ParksView: View {
             }
             .navigationTitle("Workout parks")
             .background(Color.backgroundColor)
+            .toolbar {
+                ToolbarItem {
+                    Button {
+                        isNewParkVisible = true
+                    } label: {
+                        Label("Add Item", systemImage: "plus")
+                    }
+                }
+            }
+            .sheet(isPresented: $isNewParkVisible) {
+                NewParkView(isPresented: $isNewParkVisible)
+            }
         }
     }
 }
