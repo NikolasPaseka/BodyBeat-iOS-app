@@ -8,13 +8,9 @@
 import SwiftUI
 import MapKit
 
-struct AnnotatedItem: Identifiable {
-    var id = UUID()
-    var coordinate: CLLocationCoordinate2D
-}
-
 struct ParksView: View {
     @StateObject var viewModel = ParksViewModel()
+    @StateObject var locationManager = LocationManager()
     
     @State var isNewParkVisible: Bool = false
     @State var renderMode: Int = 0
@@ -38,8 +34,7 @@ struct ParksView: View {
                 .pickerStyle(SegmentedPickerStyle())
                 .padding()
                 if (renderMode == 0) {
-                    // TODO - zamerit current lokaci
-                    ParksMapView(region: MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 12, longitude: 12), span: MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 10)), pointsOfInterest: getPointsOfInterest())
+                    ParksMapView(region: locationManager.region, pointsOfInterest: getPointsOfInterest())
                         .onAppear {
                             viewModel.fetch()
                         }
@@ -79,9 +74,6 @@ struct ParksMapView: View {
     @State private var mapType: MKMapType = .standard
     @State private var trackingMode = MapUserTrackingMode.follow
     var pointsOfInterest: [AnnotatedItem]
-    
-//    var long: Double
-//    var lat: Double
     
     var body: some View {
         Map(coordinateRegion: $region,

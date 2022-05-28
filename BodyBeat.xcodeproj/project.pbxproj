@@ -14,6 +14,9 @@
 		382B87F02825025300A71270 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 382B87EF2825025300A71270 /* Preview Assets.xcassets */; };
 		382B87F22825025300A71270 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382B87F12825025300A71270 /* Persistence.swift */; };
 		382B87F52825025300A71270 /* BodyBeat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 382B87F32825025300A71270 /* BodyBeat.xcdatamodeld */; };
+		383D246F284228D8009AABFD /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383D246E284228D8009AABFD /* MapView.swift */; };
+		383D2471284229B3009AABFD /* SelectLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383D2470284229B3009AABFD /* SelectLocationView.swift */; };
+		383D247328424716009AABFD /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383D247228424716009AABFD /* LocationManager.swift */; };
 		383D6D92282556120064D5F2 /* ExerciseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383D6D91282556120064D5F2 /* ExerciseListView.swift */; };
 		383D6D94282557880064D5F2 /* NewExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383D6D93282557880064D5F2 /* NewExerciseView.swift */; };
 		38456D74282529BB002E81B4 /* NewPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38456D73282529BB002E81B4 /* NewPlanView.swift */; };
@@ -52,6 +55,9 @@
 		382B87EF2825025300A71270 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		382B87F12825025300A71270 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		382B87F42825025300A71270 /* BodyBeat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BodyBeat.xcdatamodel; sourceTree = "<group>"; };
+		383D246E284228D8009AABFD /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		383D2470284229B3009AABFD /* SelectLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationView.swift; sourceTree = "<group>"; };
+		383D247228424716009AABFD /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		383D6D91282556120064D5F2 /* ExerciseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListView.swift; sourceTree = "<group>"; };
 		383D6D93282557880064D5F2 /* NewExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExerciseView.swift; sourceTree = "<group>"; };
 		38456D73282529BB002E81B4 /* NewPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlanView.swift; sourceTree = "<group>"; };
@@ -118,7 +124,7 @@
 				382B87F12825025300A71270 /* Persistence.swift */,
 				382B87F32825025300A71270 /* BodyBeat.xcdatamodeld */,
 				382B87EE2825025300A71270 /* Preview Content */,
-				3859C86D283FD96200607A0F /* Classes */,
+				3859C86D283FD96200607A0F /* Controllers */,
 				387B7E8D283A48BC000A7CC8 /* Extensions */,
 				384E9379283BF2500057ACAF /* Utils */,
 				387B7E94283AABF3000A7CC8 /* ViewModel */,
@@ -143,12 +149,13 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		3859C86D283FD96200607A0F /* Classes */ = {
+		3859C86D283FD96200607A0F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				3859C86E283FD97E00607A0F /* PhotoPicker.swift */,
+				383D247228424716009AABFD /* LocationManager.swift */,
 			);
-			path = Classes;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		386A7665283993AF0062DD94 /* View */ = {
@@ -166,9 +173,11 @@
 				387B7E8B283A1E0F000A7CC8 /* ScheduleView.swift */,
 				387B7E90283A8DC7000A7CC8 /* ParksView.swift */,
 				387B7E92283AAB8C000A7CC8 /* ParkDetailView.swift */,
+				3859C86B283FD37900607A0F /* NewParkView.swift */,
+				383D2470284229B3009AABFD /* SelectLocationView.swift */,
+				383D246E284228D8009AABFD /* MapView.swift */,
 				384E936E283B9E6F0057ACAF /* ProfileSignInView.swift */,
 				384E9370283BCC260057ACAF /* ProfileRegistrationView.swift */,
-				3859C86B283FD37900607A0F /* NewParkView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -281,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				383D6D92282556120064D5F2 /* ExerciseListView.swift in Sources */,
+				383D246F284228D8009AABFD /* MapView.swift in Sources */,
 				3859C86C283FD37900607A0F /* NewParkView.swift in Sources */,
 				386A76772839954F0062DD94 /* RoundedTextField.swift in Sources */,
 				384E9378283BE9680057ACAF /* PlanProgressDoneView.swift in Sources */,
@@ -297,12 +307,14 @@
 				382B87EB2825025200A71270 /* ContentView.swift in Sources */,
 				384E9371283BCC260057ACAF /* ProfileRegistrationView.swift in Sources */,
 				386A766428394C600062DD94 /* AddScheduleView.swift in Sources */,
+				383D247328424716009AABFD /* LocationManager.swift in Sources */,
 				387B7E93283AAB8C000A7CC8 /* ParkDetailView.swift in Sources */,
 				387B7E91283A8DC7000A7CC8 /* ParksView.swift in Sources */,
 				386A76732839954F0062DD94 /* LabelTimerView.swift in Sources */,
 				386A76742839954F0062DD94 /* ExerciseListItemView.swift in Sources */,
 				387B7E8F283A49C3000A7CC8 /* Color.swift in Sources */,
 				384E9373283BCD5C0057ACAF /* FormInputTextField.swift in Sources */,
+				383D2471284229B3009AABFD /* SelectLocationView.swift in Sources */,
 				382B87E92825025200A71270 /* BodyBeatApp.swift in Sources */,
 				382B87F52825025300A71270 /* BodyBeat.xcdatamodeld in Sources */,
 				383D6D94282557880064D5F2 /* NewExerciseView.swift in Sources */,
@@ -444,6 +456,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BodyBeat/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Application needs your current location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -473,6 +486,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BodyBeat/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Application needs your current location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct ParkDetailView: View {
     var park: Park
@@ -22,37 +23,26 @@ struct ParkDetailView: View {
     
     var body: some View {
         VStack {
-            Text(park.name)
-                .padding()
-                .font(.title)
             if let data = data, let uiimage = UIImage(data: data) {
                 Image(uiImage: uiimage)
                     .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 200, height: 200)
-                    .background(.gray)
-            } else {
-                Image(systemName: "image")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 200, height: 200)
-                    .background(.gray)
-                    .onAppear {
-                        fetchData()
-                    }
+                    .aspectRatio(contentMode: .fit)
+                    .frame(maxWidth: .infinity)
             }
-            
-            Button {
-                
-            } label: {
-                ConfirmButtonView(buttonLabel: "Show location")
-                    .padding()
-            }
+
+            Text("Location")
+                .font(.title2.bold())
+                .padding(.top, 20)
+            MapView(region: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: park.latitude, longitude: park.longitude), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))), pointsOfInterest: [AnnotatedItem(coordinate: CLLocationCoordinate2D(latitude: park.latitude, longitude: park.longitude))])
             
             Spacer()
         }
+        .navigationTitle(park.name)
         .frame(maxWidth: .infinity)
         .background(Color.backgroundColor)
+        .onAppear {
+            fetchData()
+        }
     }
 }
 

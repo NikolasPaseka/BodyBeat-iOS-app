@@ -7,14 +7,18 @@
 
 import SwiftUI
 import Cloudinary
+import MapKit
 
 struct NewParkView: View {
+    @StateObject var locationManager: LocationManager = LocationManager()
+    
     @Binding var isPresented: Bool
     
     @State var name: String = ""
     @State var image: UIImage = UIImage(named: "uploadButton")!
     
     @State var isPhotoGalleryPresented: Bool = false
+    @State var selectedLocation: CLLocationCoordinate2D?
     
     var body: some View {
         NavigationView {
@@ -33,6 +37,13 @@ struct NewParkView: View {
                         isPhotoGalleryPresented = true
                     }
                 
+                NavigationLink {
+                    SelectLocationView(selectedLocation: $selectedLocation, region: locationManager.region)
+                } label: {
+                    ConfirmButtonView(buttonLabel: "Set location")
+                        .padding()
+                }
+    
                 Spacer()
             }
             .padding()
@@ -58,10 +69,16 @@ struct NewParkView: View {
     }
     
     func uploadParkToApi(urlString: String) {
+        // TODO POPUP message
+        // TODO check image uploaded
+        // TODO add hash to the name
+        guard name != "" else { return }
+        guard let selectedLocation = selectedLocation else { return }
+
         let json: [String: Any] = [
             "name": name,
-            "latitude": 35,
-            "longitude": 35,
+            "latitude": selectedLocation.latitude,
+            "longitude": selectedLocation.longitude,
             "image": urlString
         ]
         
