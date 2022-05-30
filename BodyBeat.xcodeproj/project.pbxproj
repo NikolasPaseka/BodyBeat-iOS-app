@@ -47,6 +47,7 @@
 		38CD343A2844C517008A7B15 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 38CD34392844C517008A7B15 /* FirebaseFirestore */; };
 		38CD343C2844CBAA008A7B15 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38CD343B2844CBAA008A7B15 /* GoogleService-Info.plist */; };
 		38CD343E2844D38E008A7B15 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CD343D2844D38E008A7B15 /* FirestoreManager.swift */; };
+		38CD3440284534BB008A7B15 /* HashGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CD343F284534BB008A7B15 /* HashGenerator.swift */; };
 		38F1792D28258EE50056DC96 /* PlanProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F1792C28258EE50056DC96 /* PlanProgressView.swift */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +90,7 @@
 		387B7E95283AAC13000A7CC8 /* ParksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParksViewModel.swift; sourceTree = "<group>"; };
 		38CD343B2844CBAA008A7B15 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		38CD343D2844D38E008A7B15 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
+		38CD343F284534BB008A7B15 /* HashGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashGenerator.swift; sourceTree = "<group>"; };
 		38F1792C28258EE50056DC96 /* PlanProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanProgressView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -154,6 +156,7 @@
 		384E9379283BF2500057ACAF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				38CD343F284534BB008A7B15 /* HashGenerator.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				383D6D92282556120064D5F2 /* ExerciseListView.swift in Sources */,
+				38CD3440284534BB008A7B15 /* HashGenerator.swift in Sources */,
 				38CD343E2844D38E008A7B15 /* FirestoreManager.swift in Sources */,
 				383D246F284228D8009AABFD /* MapView.swift in Sources */,
 				3859C86C283FD37900607A0F /* NewParkView.swift in Sources */,

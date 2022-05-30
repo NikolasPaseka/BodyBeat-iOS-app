@@ -37,6 +37,7 @@ struct NewPlanView: View {
     func savePlan() {
         let plan = Plan(context: viewContext)
         
+        plan.planId = HashGenerator().getRandomHash()
         plan.title = title
         plan.timerExercise = Int16(exerciseTimerMinutes*60 + exerciseTimerSeconds)
         plan.timerSeries = Int16(seriesTimerMinutes*60 + seriesTimerSeconds)

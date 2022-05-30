@@ -12,19 +12,27 @@ import SwiftUI
 
 class FirestoreManager: ObservableObject {
     //@Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Plan.title, ascending: true)],
-        animation: .default)
-    private var plans: FetchedResults<Plan>
     
     init() {}
     
     func getData(viewContext: NSManagedObjectContext) {
+        var plansId: [String] = [] //plans.map { $0.planId ?? "none" }
+        
         let db = Firestore.firestore()
         let ref = db.collection("Plan")
         let refExercise = db.collection("Exercise")
         let refSchedule = db.collection("Schedule")
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Plan")
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try viewContext.fetch(request)
+            for data in result as! [NSManagedObject] {
+                plansId.append(data.value(forKey: "planId") as! String)
+            }
+        } catch {
+            print(error)
+        }
         
         ref.getDocuments { snapshot, error in
             guard error == nil else {
@@ -37,75 +45,186 @@ class FirestoreManager: ObservableObject {
                     let data = document.data()
                     
                     let planId = document.documentID
-                    let title = data["title"] as? String ?? "none"
-                    let timerSeries = data["timerSeries"] as? Int16 ?? 0
-                    let timerExercise = data["timerExercise"] as? Int16 ?? 0
+                    if !plansId.contains(planId) {
                     
-                    let plan = Plan(context: viewContext)
-                    plan.title = title
-                    plan.timerSeries = timerSeries
-                    plan.timerExercise = timerExercise
-                    
-                    refExercise.getDocuments { snapshot, error in
-                        if let snapshot = snapshot {
-                            for document in snapshot.documents.filter({$0.data()["planId"] as? String == planId }) {
-                                let data = document.data()
-                                
-                                let exercise = Exercise(context: viewContext)
-                                exercise.title = data["title"] as? String
-                                exercise.sets = data["sets"] as? Int16 ?? 0
-                                exercise.repeats = data["repeats"] as? Int16 ?? 0
-                                
-                                plan.addToExercises(exercise)
-                                
-                                do {
-                                    try viewContext.save()
-                                } catch {
-                                    let nsError = error as NSError
-                                    print(nsError)
-                                    //fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-                                }
-                            }
-                        }
-                    }
-                    
-                    refSchedule.getDocuments { snapshot, error in
-                        guard error == nil else { return }
+                        let title = data["title"] as? String ?? "none"
+                        let timerSeries = data["timerSeries"] as? Int16 ?? 0
+                        let timerExercise = data["timerExercise"] as? Int16 ?? 0
                         
-                        if let snapshot = snapshot {
-                            for document in snapshot.documents.filter({$0.data()["planId"] as? String == planId }) {
-                                let data = document.data()
-                                
-                                let schedule = Schedule(context: viewContext)
-                                schedule.day = data["day"] as? String
-                                let time: Timestamp? = data["time"] as? Timestamp
-                                schedule.time = time?.dateValue()
-                                print("\(String(describing: schedule.day)) \(String(describing: schedule.time))")
-                                
-                                plan.addToSchedules(schedule)
-                                
-                                do {
-                                    try viewContext.save()
-                                } catch {
-                                    let nsError = error as NSError
-                                    print(nsError)
-                                    //fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                        let plan = Plan(context: viewContext)
+                        plan.planId = planId
+                        plan.title = title
+                        plan.timerSeries = timerSeries
+                        plan.timerExercise = timerExercise
+                        
+                        refExercise.getDocuments { snapshot, error in
+                            if let snapshot = snapshot {
+                                for document in snapshot.documents.filter({$0.data()["planId"] as? String == planId }) {
+                                    let data = document.data()
+                                    
+                                    let exercise = Exercise(context: viewContext)
+                                    exercise.title = data["title"] as? String
+                                    exercise.sets = data["sets"] as? Int16 ?? 0
+                                    exercise.repeats = data["repeats"] as? Int16 ?? 0
+                                    
+                                    plan.addToExercises(exercise)
+                                    
+                                    do {
+                                        try viewContext.save()
+                                    } catch {
+                                        let nsError = error as NSError
+                                        print(nsError)
+                                        //fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                                    }
                                 }
                             }
                         }
+                        
+                        refSchedule.getDocuments { snapshot, error in
+                            guard error == nil else { return }
+                            
+                            if let snapshot = snapshot {
+                                for document in snapshot.documents.filter({$0.data()["planId"] as? String == planId }) {
+                                    let data = document.data()
+                                    
+                                    let schedule = Schedule(context: viewContext)
+                                    schedule.day = data["day"] as? String
+                                    let time: Timestamp? = data["time"] as? Timestamp
+                                    schedule.time = time?.dateValue()
+                                    print("\(String(describing: schedule.day)) \(String(describing: schedule.time))")
+                                    
+                                    plan.addToSchedules(schedule)
+                                    
+                                    do {
+                                        try viewContext.save()
+                                    } catch {
+                                        let nsError = error as NSError
+                                        print(nsError)
+                                    }
+                                }
+                            }
+                        }
+                        
+                        print("data added: \(title) \(timerSeries) \(timerExercise)")
+                        do {
+                            try viewContext.save()
+                        } catch {
+                            let nsError = error as NSError
+                            print(nsError)
+                        }
                     }
-                    
-                    //print("data added: \(plan.title!) \(plan.timerSeries) \(plan.timerExercise)")
-                    
-                    print("data added: \(title) \(timerSeries) \(timerExercise)")
-
-                    do {
-                        try viewContext.save()
-                    } catch {
-                        let nsError = error as NSError
-                        print(nsError)
-                        //fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                }
+            }
+        }
+    }
+    
+    func getUploadedPlansId(completionHandler: @escaping ([String]) -> Void) {
+        var plansId: [String] = []
+        
+        let db = Firestore.firestore()
+        let ref = db.collection("Plan")
+        
+        ref.getDocuments { (snapshot, error) in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            
+            if let snapshot = snapshot {
+                for document in snapshot.documents {
+                    plansId.append(document.documentID)
+                    print(document.documentID)
+                }
+            }
+            
+            completionHandler(plansId)
+        }
+    }
+    
+    func uploadData(plans: [Plan], viewContext: NSManagedObjectContext, userId: String) {
+        //deleteData()
+        
+        getUploadedPlansId { plansId in
+            print(plansId)
+            
+            let filteredPlans = plans.filter { !plansId.contains($0.planId ?? "none") }
+            
+            let db = Firestore.firestore()
+            for plan in filteredPlans {
+                let ref = db.collection("Plan").document(plan.planId ?? "none")
+                ref.setData([
+                    "title": plan.title ?? "none",
+                    "timerSeries": Double(plan.timerSeries),
+                    "timerExercise": Double(plan.timerExercise),
+                    "userId": userId
+                ]) { error in
+                    if let error = error {
+                        print(error)
                     }
+                }
+                print("Document added with id: \(ref.documentID)")
+                let planId = ref.documentID
+                
+                
+                let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Exercise")
+                request.predicate = NSPredicate(format: "plan = %@", plan)
+                request.returnsObjectsAsFaults = false
+                do {
+                    let result = try viewContext.fetch(request)
+                    for data in result as! [NSManagedObject] {
+                        print(data.value(forKey: "title") as! String)
+                        let ref = db.collection("Exercise").addDocument(data: [
+                            "title": data.value(forKey: "title") as? String ?? "none",
+                            "sets": data.value(forKey: "sets") as? Int16 ?? 0,
+                            "repeats": data.value(forKey: "repeats") as? Int16 ?? 0,
+                            "planId": planId
+                        ]) { error in
+                            if let error = error {
+                                print(error)
+                            }
+                        }
+                        print("Exercise added with id: \(ref.documentID)")
+                    }
+                } catch {
+                    print(error)
+                }
+                
+                let reqSchedule = NSFetchRequest<NSFetchRequestResult>(entityName: "Schedule")
+                reqSchedule.predicate = NSPredicate(format: "plan = %@", plan)
+                reqSchedule.returnsObjectsAsFaults = false
+                do {
+                    let result = try viewContext.fetch(reqSchedule)
+                    for data in result as! [NSManagedObject] {
+                        print(data.value(forKey: "day") as! String)
+                        let time = data.value(forKey: "time") as? Date ?? Date.now
+                        let timestamp = time.timeIntervalSince1970
+                        let ref = db.collection("Schedule").addDocument(data: [
+                            "day": data.value(forKey: "day") as? String ?? "monday",
+                            "time": timestamp,
+                            "planId": planId
+                        ]) { error in
+                            if let error = error {
+                                print(error)
+                            }
+                        }
+                        print("Schedule added with id: \(ref.documentID)")
+                    }
+                } catch {
+                    print(error)
+                }
+            }
+        }
+    }
+    
+    func deleteData() {
+        let db = Firestore.firestore()
+        
+        db.collection("Plan").whereField("userId", isEqualTo: "test").getDocuments { (querySnapshot, error) in
+            if error != nil {
+                print(error!.localizedDescription)
+            } else {
+                for document in querySnapshot!.documents {
+                    document.reference.delete()
                 }
             }
         }

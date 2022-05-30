@@ -7,6 +7,7 @@
         <relationship name="plan" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Plan" inverseName="exercises" inverseEntity="Plan"/>
     </entity>
     <entity name="Plan" representedClassName="Plan" syncable="YES" codeGenerationType="class">
+        <attribute name="planId" optional="YES" attributeType="String"/>
         <attribute name="timerExercise" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="timerSeries" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
@@ -23,7 +24,7 @@
     </entity>
     <elements>
         <element name="Exercise" positionX="-105.38671875" positionY="-76.62109375" width="125.734375" height="89"/>
-        <element name="Plan" positionX="-417.5" positionY="14.0859375" width="128" height="104"/>
+        <element name="Plan" positionX="-417.5" positionY="14.0859375" width="128" height="119"/>
         <element name="Schedule" positionX="-216" positionY="9" width="128" height="74"/>
         <element name="WorkoutLog" positionX="-261" positionY="18" width="128" height="44"/>
     </elements>

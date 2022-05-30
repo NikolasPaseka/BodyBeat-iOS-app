@@ -9,6 +9,11 @@ import SwiftUI
 import Firebase
 
 struct ProfileSignInView: View {
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Plan.title, ascending: true)],
+        animation: .default)
+    private var plans: FetchedResults<Plan>
+    
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject var fireStoreManager: FirestoreManager
     
@@ -16,6 +21,7 @@ struct ProfileSignInView: View {
     @State var password: String = ""
     
     @State var isUserLoggedIn: Bool = false
+    @State var userId: String = ""
     
     @State var isVisible: Bool = false
     
@@ -77,6 +83,14 @@ struct ProfileSignInView: View {
                         ConfirmButtonView(buttonLabel: "Log out", width: 150)
                             .padding()
                     }
+                    
+                    Button {
+                        fireStoreManager.uploadData(plans: plans.map {$0.self}, viewContext: viewContext, userId: userId)
+                    } label: {
+                        Text("delete data")
+                            .foregroundColor(.red)
+                    }
+                    
                     Spacer()
                 }
             }
@@ -87,6 +101,7 @@ struct ProfileSignInView: View {
                 Auth.auth().addStateDidChangeListener { auth, user in
                     if user != nil {
                         isUserLoggedIn = true
+                        userId = user!.uid
                     }
                 }
             }
