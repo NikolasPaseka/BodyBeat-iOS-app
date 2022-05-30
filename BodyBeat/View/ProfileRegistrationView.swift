@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct ProfileRegistrationView: View {
     @State var email: String = ""
@@ -29,6 +30,7 @@ struct ProfileRegistrationView: View {
             FormInputTextField(image: "lock.fill", label: "Repeat password", value: $repeatPassword, isPassword: true)
             
             Button {
+                register()
                 isVisible = false
             } label: {
                 ConfirmButtonView(buttonLabel: "Register", width: 150)
@@ -40,6 +42,17 @@ struct ProfileRegistrationView: View {
         .padding()
         .navigationTitle("BodyBeat Profile")
         .background(Color.backgroundColor)
+    }
+    
+    func register() {
+        // TODO - vypsat chybovou hlasku
+        guard password == repeatPassword else { return }
+        
+        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+            if (error != nil) {
+                print(error!.localizedDescription)
+            }
+        }
     }
 }
 

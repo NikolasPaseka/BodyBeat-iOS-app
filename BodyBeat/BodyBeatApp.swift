@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct BodyBeatApp: App {
+    @StateObject var firestoreManager = FirestoreManager()
+    
     let persistenceController = PersistenceController.shared
     
     init() {
@@ -19,12 +22,15 @@ struct BodyBeatApp: App {
         //UIButton.appearance().backgroundColor = .green
         UINavigationBar.appearance().backgroundColor = UIColor(Color.backgroundColor)
         UITableView.appearance().backgroundColor = .clear
+        
+        FirebaseApp.configure()
     }
 
     var body: some Scene {
         WindowGroup {
             SplashScreen()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(firestoreManager)
                 .preferredColorScheme(.dark)
         }
     }

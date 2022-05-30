@@ -10,8 +10,8 @@
         <attribute name="timerExercise" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="timerSeries" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Exercise" inverseName="plan" inverseEntity="Exercise"/>
-        <relationship name="schedules" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Schedule" inverseName="plan" inverseEntity="Schedule"/>
+        <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Exercise" inverseName="plan" inverseEntity="Exercise"/>
+        <relationship name="schedules" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Schedule" inverseName="plan" inverseEntity="Schedule"/>
     </entity>
     <entity name="Schedule" representedClassName="Schedule" syncable="YES" codeGenerationType="class">
         <attribute name="day" optional="YES" attributeType="String"/>
