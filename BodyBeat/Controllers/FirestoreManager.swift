@@ -16,7 +16,7 @@ class FirestoreManager: ObservableObject {
     init() {}
     
     func getData(viewContext: NSManagedObjectContext) {
-        var plansId: [String] = [] //plans.map { $0.planId ?? "none" }
+        var plansId: [String] = []
         
         let db = Firestore.firestore()
         let ref = db.collection("Plan")

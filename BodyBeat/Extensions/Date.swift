@@ -9,6 +9,19 @@ import Foundation
 
 extension Date: Strideable {
     
+    var month: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US")
+        dateFormatter.dateFormat = "LLLL"
+        return dateFormatter.string(from: self)
+    }
+    
+    var year: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy"
+        return dateFormatter.string(from: self)
+    }
+    
     public func distance(to other: Date) -> TimeInterval {
         return other.timeIntervalSinceReferenceDate - self.timeIntervalSinceReferenceDate
     }
@@ -16,24 +29,6 @@ extension Date: Strideable {
     public func advanced(by n: TimeInterval) -> Date {
         return self + n
     }
-
-
-//    enum Weekday: CaseIterable {
-//        case sunday
-//        case monday
-//        case tuesday
-//        case wednesday
-//        case thursday
-//        case friday
-//        case saturday
-//    }
-//
-//    var isWednesday: Bool { dayOfTheWeek == .wednesday } // 🐸
-//
-//    var dayOfTheWeek: Date.Weekday {
-//        let dayNumber = Calendar.current.component(.weekday, from: self)
-//        return Weekday.allCases[dayNumber - 1]
-//    }
     
     func dayOfTheWeek(day: Date) -> String {
         let weekdays = [

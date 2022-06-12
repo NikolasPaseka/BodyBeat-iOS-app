@@ -20,8 +20,6 @@ struct ScheduleView: View {
                 FilteredList(filter: day)
                 
                 Spacer()
-                Text("Monthly completition")
-                    .font(.title.bold())
                 MonthlyProgressView()
                     .padding()
             }
@@ -135,10 +133,39 @@ struct MonthlyProgressView: View {
     private var schedules: FetchedResults<Schedule>
     
     @State private var monthlyCompletion: Double = 0
-    
+    @State private var selectedDate: Date = Date()
     
     var body: some View {
         VStack {
+            Text("Monthly completition")
+                .font(.title.bold())
+            HStack {
+                Spacer()
+                HStack {
+                    Button {
+                        switchToPreviousMonth()
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(Color.orange)
+                            .font(.title)
+                    }
+                    VStack {
+                        Text(selectedDate.month)
+                            .font(.body.bold())
+                        Text(selectedDate.year)
+                            .font(.body.bold())
+                    }
+                    .frame(width: 120)
+                    Button {
+                        switchToNextMonth()
+                    } label: {
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(Color.orange)
+                            .font(.title)
+                    }
+                }
+            }
+            .padding()
             ZStack {
                 Circle()
                     .stroke(lineWidth: 20.0)
@@ -157,12 +184,17 @@ struct MonthlyProgressView: View {
             .onAppear {
                 monthlyCompletion = getMonthlyCompletion()
             }
-            
-            //Text("\(getMonthlyCompletion())")
-            //Text("\(workoutLogs.count)")
-            //Text("\(Calendar.current.startOfDay(for: Date()))")
-            //Text("\(Date().dayOfTheWeek())")
         }
+    }
+    
+    func switchToNextMonth() {
+        selectedDate = Calendar.current.date(byAdding: .month, value: 1, to: selectedDate) ?? Date()
+        monthlyCompletion = getMonthlyCompletion()
+    }
+    
+    func switchToPreviousMonth() {
+        selectedDate = Calendar.current.date(byAdding: .month, value: -1, to: selectedDate) ?? Date()
+        monthlyCompletion = getMonthlyCompletion()
     }
     
     func getMonthlyCompletion() -> Double {
@@ -170,9 +202,8 @@ struct MonthlyProgressView: View {
         var numbersOfDays: [String:Int] = [:]
         
         let calendar = Calendar.current
-        let date = Date()
 
-        let interval = calendar.dateInterval(of: .month, for: date)!
+        let interval = calendar.dateInterval(of: .month, for: selectedDate)!
         //print(interval)
 
         // Compute difference in days:
@@ -181,18 +212,17 @@ struct MonthlyProgressView: View {
         let dayDurationInSeconds: TimeInterval = 60*60*24
         for dat in stride(from: interval.start, to: interval.end, by: dayDurationInSeconds) {
            // print(date.dayOfTheWeek(day: dat))
-            numbersOfDays[date.dayOfTheWeek(day: dat), default: 0] += 1
+            numbersOfDays[selectedDate.dayOfTheWeek(day: dat), default: 0] += 1
         }
         
         var numberOfSchedules: Int = 0
         for schedule in schedules {
             numberOfSchedules += numbersOfDays[schedule.day ?? "none"] ?? 0
         }
-//        print(days)
-//        print(numbersOfDays)
-//        print(numberOfSchedules)
         
-        return Double(workoutLogs.count)/Double(numberOfSchedules)
+        let filteredLog = workoutLogs.filter { $0.date?.month == selectedDate.month && $0.date?.year == selectedDate.year}
+        
+        return Double(filteredLog.count)/Double(numberOfSchedules)
     }
 }
 
