@@ -15,8 +15,15 @@ struct ExerciseListView: View {
     var body: some View {
         List {
             ForEach(exercises) { exercise in
-                Text(exercise.title ?? "no title")
-            }.listRowBackground(Color.lighterGrey)
+                VStack {
+                    Text(exercise.title ?? "no title")
+                    Text("\(exercise.sets) x \(exercise.repeats)")
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                }
+            }
+            .onDelete(perform: delete)
+            .listRowBackground(Color.lighterGrey)
         }
         .background(Color.backgroundColor)
         .navigationTitle("Manage exercises")
@@ -33,6 +40,10 @@ struct ExerciseListView: View {
         .sheet(isPresented: $isNewExerciseVisible) {
             NewExerciseView(exercises: $exercises, isNewExerciseVisible: $isNewExerciseVisible)
         }
+    }
+    
+    func delete(at offsets: IndexSet) {
+        exercises.remove(atOffsets: offsets)
     }
 }
 

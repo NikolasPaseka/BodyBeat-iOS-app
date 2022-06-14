@@ -14,6 +14,8 @@ struct PlanDetailView: View {
     
     @State var isPlanProgressVisible: Bool = false
     
+    @State var isEditVisible: Bool = false
+    
     init(plan: Plan) {
         self.plan = plan
         self._exercises = FetchRequest(
@@ -36,6 +38,10 @@ struct PlanDetailView: View {
     
     var body: some View {
         VStack {
+            Text(plan.title ?? "no title")
+                .font(.title.bold())
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding()
             Text("exercise: \(plan.timerExercise) seconds")
             Text("series: \(plan.timerSeries) seconds")
             
@@ -62,9 +68,17 @@ struct PlanDetailView: View {
                     Spacer()
                 }
             }
-            .navigationTitle(plan.title ?? "empty")
+            .navigationBarTitleDisplayMode(.inline)
             Spacer()
-        }.background(Color.backgroundColor)
+        }
+        .background(Color.backgroundColor)
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                NavigationLink(destination: NewPlanView(plan: plan, isNewPlanVisible: $isEditVisible)) {
+                   Text("Edit")
+                }
+            }
+        }
     }
 }
 

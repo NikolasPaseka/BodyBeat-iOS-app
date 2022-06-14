@@ -26,41 +26,31 @@ struct AddScheduleView: View {
     }
     
     var body: some View {
-        NavigationView {
-            VStack {
-                Text("Select time of schedule")
-                    .font(.title)
-                HStack {
-                    Picker("Day", selection: $selectedDay) {
-                        ForEach(0..<days.count) { i in
-                            Text(days[i])
-                        }
-                    }.id(days)
-                    
-                    DatePicker("Time", selection: $selectedTime, displayedComponents: .hourAndMinute)
-                }
+        VStack {
+            Text("Select time of schedule")
+                .font(.title)
+            HStack {
+                Picker("Day", selection: $selectedDay) {
+                    ForEach(0..<days.count) { i in
+                        Text(days[i])
+                    }
+                }.id(days)
                 
-                .navigationTitle("Add to schedule")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItemGroup(placement: .navigationBarLeading) {
-                        Button {
-                            isAddScheduleVisible = false
-                        } label: {
-                            Text("Cancel")
-                        }
-                    }
-                    ToolbarItemGroup(placement: .navigationBarTrailing) {
-                        Button {
-                            saveSchedule()
-                            isAddScheduleVisible = false
-                        } label: {
-                            Text("Save")
-                        }
-                    }
-                }
+                DatePicker("Time", selection: $selectedTime, displayedComponents: .hourAndMinute)
+                    .foregroundColor(.white)
+                    .frame(width: 150)
             }
+            Spacer()
+            Button {
+                saveSchedule()
+                isAddScheduleVisible = false
+            } label: {
+                ConfirmButtonView(buttonLabel: "Add to schedule")
+            }
+            .padding()
+            Spacer()
         }
+        .padding()
     }
 }
 

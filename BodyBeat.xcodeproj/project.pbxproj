@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		38142D2D2836DC12003AC9A0 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38142D2C2836DC12003AC9A0 /* ProgressBarView.swift */; };
+		38161C702857BB8800B3219B /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38161C6F2857BB8800B3219B /* View.swift */; };
+		38161C722858C11300B3219B /* TimerButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38161C712858C11300B3219B /* TimerButtonView.swift */; };
+		38161C752858E80A00B3219B /* HalfASheet in Frameworks */ = {isa = PBXBuildFile; productRef = 38161C742858E80A00B3219B /* HalfASheet */; };
 		382B87E92825025200A71270 /* BodyBeatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382B87E82825025200A71270 /* BodyBeatApp.swift */; };
 		382B87EB2825025200A71270 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382B87EA2825025200A71270 /* ContentView.swift */; };
 		382B87ED2825025300A71270 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 382B87EC2825025300A71270 /* Assets.xcassets */; };
@@ -53,6 +56,8 @@
 
 /* Begin PBXFileReference section */
 		38142D2C2836DC12003AC9A0 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
+		38161C6F2857BB8800B3219B /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		38161C712858C11300B3219B /* TimerButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerButtonView.swift; sourceTree = "<group>"; };
 		382B87E52825025200A71270 /* BodyBeat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BodyBeat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		382B87E82825025200A71270 /* BodyBeatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyBeatApp.swift; sourceTree = "<group>"; };
 		382B87EA2825025200A71270 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -102,6 +107,7 @@
 				3859C872283FDC8900607A0F /* Cloudinary in Frameworks */,
 				38CD34382844C517008A7B15 /* FirebaseAuth in Frameworks */,
 				38CD343A2844C517008A7B15 /* FirebaseFirestore in Frameworks */,
+				38161C752858E80A00B3219B /* HalfASheet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,6 +211,7 @@
 				386A76702839954F0062DD94 /* ConfirmButtonView.swift */,
 				386A76712839954F0062DD94 /* RoundedTextField.swift */,
 				384E9372283BCD5C0057ACAF /* FormInputTextField.swift */,
+				38161C712858C11300B3219B /* TimerButtonView.swift */,
 			);
 			path = CustomComponent;
 			sourceTree = "<group>";
@@ -214,6 +221,7 @@
 			children = (
 				387B7E8E283A49C3000A7CC8 /* Color.swift */,
 				384E937C283BFE9F0057ACAF /* Date.swift */,
+				38161C6F2857BB8800B3219B /* View.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -246,6 +254,7 @@
 				3859C871283FDC8900607A0F /* Cloudinary */,
 				38CD34372844C517008A7B15 /* FirebaseAuth */,
 				38CD34392844C517008A7B15 /* FirebaseFirestore */,
+				38161C742858E80A00B3219B /* HalfASheet */,
 			);
 			productName = BodyBeat;
 			productReference = 382B87E52825025200A71270 /* BodyBeat.app */;
@@ -278,6 +287,7 @@
 			packageReferences = (
 				3859C870283FDC8900607A0F /* XCRemoteSwiftPackageReference "cloudinary_ios" */,
 				38CD34362844C517008A7B15 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				38161C732858E80A00B3219B /* XCRemoteSwiftPackageReference "HalfASheet" */,
 			);
 			productRefGroup = 382B87E62825025200A71270 /* Products */;
 			projectDirPath = "";
@@ -315,6 +325,7 @@
 				384E9378283BE9680057ACAF /* PlanProgressDoneView.swift in Sources */,
 				386A76752839954F0062DD94 /* SpacerLabelView.swift in Sources */,
 				38142D2D2836DC12003AC9A0 /* ProgressBarView.swift in Sources */,
+				38161C702857BB8800B3219B /* View.swift in Sources */,
 				384E937D283BFE9F0057ACAF /* Date.swift in Sources */,
 				38456D7A28253D4A002E81B4 /* PlanDetailView.swift in Sources */,
 				38456D74282529BB002E81B4 /* NewPlanView.swift in Sources */,
@@ -329,6 +340,7 @@
 				383D247328424716009AABFD /* LocationManager.swift in Sources */,
 				387B7E93283AAB8C000A7CC8 /* ParkDetailView.swift in Sources */,
 				387B7E91283A8DC7000A7CC8 /* ParksView.swift in Sources */,
+				38161C722858C11300B3219B /* TimerButtonView.swift in Sources */,
 				386A76732839954F0062DD94 /* LabelTimerView.swift in Sources */,
 				386A76742839954F0062DD94 /* ExerciseListItemView.swift in Sources */,
 				387B7E8F283A49C3000A7CC8 /* Color.swift in Sources */,
@@ -548,6 +560,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		38161C732858E80A00B3219B /* XCRemoteSwiftPackageReference "HalfASheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/franklynw/HalfASheet";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		3859C870283FDC8900607A0F /* XCRemoteSwiftPackageReference "cloudinary_ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/cloudinary/cloudinary_ios.git";
@@ -567,6 +587,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		38161C742858E80A00B3219B /* HalfASheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 38161C732858E80A00B3219B /* XCRemoteSwiftPackageReference "HalfASheet" */;
+			productName = HalfASheet;
+		};
 		3859C871283FDC8900607A0F /* Cloudinary */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3859C870283FDC8900607A0F /* XCRemoteSwiftPackageReference "cloudinary_ios" */;

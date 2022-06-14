@@ -110,7 +110,7 @@ struct DayPickerView: View {
                 if (isCircleVisible[index]) {
                     Circle()
                         //.foregroundColor(Color("lighterOrange"))
-                        .foregroundColor(Color.lighterOrange)
+                        .foregroundColor(Color.darkerOrange)
                         .frame(width: 48, height: 48)
                 }
                 Text(dayLabel)
@@ -137,7 +137,7 @@ struct MonthlyProgressView: View {
     
     var body: some View {
         VStack {
-            Text("Monthly completition")
+            Text("Monthly completion")
                 .font(.title.bold())
             HStack {
                 Spacer()
@@ -146,8 +146,8 @@ struct MonthlyProgressView: View {
                         switchToPreviousMonth()
                     } label: {
                         Image(systemName: "chevron.left")
-                            .foregroundColor(Color.orange)
-                            .font(.title)
+                            .foregroundColor(Color.lighterOrange)
+                            .font(.title.bold())
                     }
                     VStack {
                         Text(selectedDate.month)
@@ -160,8 +160,8 @@ struct MonthlyProgressView: View {
                         switchToNextMonth()
                     } label: {
                         Image(systemName: "chevron.right")
-                            .foregroundColor(Color.orange)
-                            .font(.title)
+                            .foregroundColor(Color.lighterOrange)
+                            .font(.title.bold())
                     }
                 }
             }

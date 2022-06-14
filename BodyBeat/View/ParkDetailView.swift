@@ -15,10 +15,9 @@ struct ParkDetailView: View {
     func fetchData() {
         guard let url = URL(string: park.image) else { return }
         
-        let task = URLSession.shared.dataTask(with: url) { data, _, _ in
+        URLSession.shared.dataTask(with: url) { data, _, _ in
             self.data = data
-        }
-        task.resume()
+        }.resume()
     }
     
     var body: some View {

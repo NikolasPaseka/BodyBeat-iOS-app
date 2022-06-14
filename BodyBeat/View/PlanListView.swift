@@ -36,7 +36,7 @@ struct PlanListView: View {
                     EditButton()
                 }
                 ToolbarItem {
-                    NavigationLink(destination: NewPlanView(isNewPlanVisible: $isNewPlanVisible),
+                    NavigationLink(destination: NewPlanView(plan: nil, isNewPlanVisible: $isNewPlanVisible),
                                    isActive: $isNewPlanVisible) {
                         Button(action: {
                             isNewPlanVisible = true

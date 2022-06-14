@@ -19,11 +19,12 @@ struct NumberPickerView: View {
             Picker("Picker", selection: $selectedNumber) {
                 ForEach(0..<maxInputRange) { number in
                     Text("\(number)")
+                        .foregroundColor(.white)
                 }
             }.pickerStyle(WheelPickerStyle())
-                .frame(width: 60, height: 60)
-                .clipped()
-                .compositingGroup()
+//                .frame(width: 60, height: 60)
+//                .clipped()
+//                .compositingGroup()
         }
     }
 }
