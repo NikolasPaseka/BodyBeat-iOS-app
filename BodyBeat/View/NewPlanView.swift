@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 import HalfASheet
 
 struct NewPlanView: View {
@@ -34,7 +35,6 @@ struct NewPlanView: View {
         self._isNewPlanVisible = isNewPlanVisible
     }
     
-    
     func savePlan() {
         if plan == nil {
             plan = Plan(context: viewContext)
@@ -47,6 +47,18 @@ struct NewPlanView: View {
         plan?.timerSeries = Int16(seriesTimerMinutes*60 + seriesTimerSeconds)
         
         if let p = self.plan {
+            
+            let schedulesToDelete = p.schedules?.filter { !schedules.contains($0 as! Schedule) }
+            for entity in schedulesToDelete ?? [] {
+                viewContext.delete(entity as! NSManagedObject)
+            }
+            
+            let exercisesToDelete = p.exercises?.filter { !exercises.contains($0 as! Exercise) }
+            for entity in exercisesToDelete ?? [] {
+                viewContext.delete(entity as! NSManagedObject)
+            }
+            
+            
             p.exercises = NSSet(array: exercises)
             p.schedules = NSSet(array: schedules)
         } else {
@@ -64,6 +76,13 @@ struct NewPlanView: View {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
+    }
+    
+    func deleteReminder(at offsets: IndexSet) {
+//        if plan != nil {
+//            offsets.map { schedules[$0] }.forEach(viewContext.delete)
+//        }
+        schedules.remove(atOffsets: offsets)
     }
     
     var body: some View {
@@ -109,17 +128,10 @@ struct NewPlanView: View {
 
                     List {
                         ForEach(schedules) { schedule in
-                            HStack {
-                                Text("\(schedule.day ?? "none") \(timeFormatter.string(from: schedule.time ?? Date.now))")
-                                Spacer()
-                                Button {
-                                    schedules.remove(at: schedules.firstIndex { $0 == schedule } ?? 0)
-                                } label: {
-                                    Image(systemName: "trash.fill")
-                                        .foregroundColor(.red)
-                                }
-                            }
-                        }.listRowBackground(Color.lighterGrey)
+                            Text("\(schedule.day ?? "none") \(timeFormatter.string(from: schedule.time ?? Date.now))")
+                        }
+                        .onDelete(perform: deleteReminder)
+                        .listRowBackground(Color.lighterGrey)
                         
                         Button {
                             isAddScheduleVisible = true

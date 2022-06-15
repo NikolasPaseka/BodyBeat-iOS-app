@@ -15,6 +15,10 @@ struct ParksView: View {
     @State var isNewParkVisible: Bool = false
     @State var renderMode: Int = 0
     
+    @State var isDownloading: Bool = false
+    
+    @State var selectedPark: Park? = nil
+    
     func getPointsOfInterest() -> [AnnotatedItem] {
         var pointsOfInterest: [AnnotatedItem] = []
         
@@ -33,22 +37,45 @@ struct ParksView: View {
                 }
                 .pickerStyle(SegmentedPickerStyle())
                 .padding()
+                if (isDownloading) {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                }
                 if (renderMode == 0) {
-                    ParksMapView(region: locationManager.region, pointsOfInterest: getPointsOfInterest())
-                        .onAppear {
-                            viewModel.fetch()
+                    ZStack {
+                        ParksMapView(region: locationManager.region, pointsOfInterest: getPointsOfInterest(), selectedPark: $selectedPark, parks: viewModel.parks)
+                        VStack {
+                            Spacer()
+                            if (selectedPark != nil) {
+                                ZStack {
+                                    ParkPreviewView(park: selectedPark!)
+                                }
+                            }
                         }
+                    }
                 } else {
                     List {
                         ForEach(viewModel.parks, id: \.self) { park in
                             NavigationLink(destination: ParkDetailView(park: park)) {
                                 Text(park.name)
                             }
-                        }.listRowBackground(Color.lighterGrey)
+                        }
+                        .listRowBackground(Color.lighterGrey)
                     }
-                    .onAppear {
-                        viewModel.fetch()
+                    .refreshable {
+                        isDownloading = true
+                        viewModel.fetch {
+                            isDownloading = false
+                        }
                     }
+                    .padding(.top, -30)
+                }
+            }
+            .task {
+                isDownloading = true
+                viewModel.fetch {
+                    isDownloading = false
+                    //selectedPark = viewModel.park[0]
                 }
             }
             .navigationTitle("Workout parks")
@@ -75,15 +102,36 @@ struct ParksMapView: View {
     @State private var trackingMode = MapUserTrackingMode.follow
     var pointsOfInterest: [AnnotatedItem]
     
+    @Binding var selectedPark: Park?
+    
+    var parks: [Park]
+    
     var body: some View {
         Map(coordinateRegion: $region,
             interactionModes: .all,
             showsUserLocation: true,
             userTrackingMode: $trackingMode,
-            annotationItems: pointsOfInterest){ item in
-                // MapPin(coordinate: item.coordinate, tint: .red)
-                MapMarker(coordinate: item.coordinate, tint: Color.lighterOrange)
-            }
+//            annotationItems: pointsOfInterest){ item in
+//                // MapPin(coordinate: item.coordinate, tint: .red)
+//                //MapMarker(coordinate: item.coordinate, tint: Color.lighterOrange)
+//                MapAnnotation(coordinate: item.coordinate) {
+//                    LocationMapAnnotationView()
+//                }
+            
+            annotationItems: parks,
+            annotationContent: { park in
+            MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: park.latitude, longitude: park.longitude)) {
+                    LocationMapAnnotationView()
+                    .scaleEffect(park == selectedPark ? 1 : 0.7)
+                        .onTapGesture {
+                            if (park == selectedPark) {
+                                selectedPark = nil
+                            } else {
+                                selectedPark = park
+                            }
+                        }
+                }
+        })
     }
 }
 

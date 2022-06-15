@@ -21,21 +21,22 @@ struct ProfileSignInView: View {
     @State var password: String = ""
     
     @State var isUserLoggedIn: Bool = false
+    @State var user: User?
     @State var userId: String = ""
     
+    @State var isDownloading: Bool = false
     @State var isVisible: Bool = false
+    
+    @State var errorMessage: String = ""
     
     var body: some View {
         NavigationView {
             VStack {
-                if (isUserLoggedIn == false) {
+                if (isUserLoggedIn == false && user == nil) {
                     Text("Sign in to your profile")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding()
                         .font(.title2.bold())
-                    
-    //                RoundedTextField(placeHolder: "Email Address", value: $email)
-    //                    .frame(width: 330)
                     FormInputTextField(image: "person.fill", label: "Email Address", value: $email, isPassword: false)
                     FormInputTextField(image: "lock.fill", label: "Password", value: $password, isPassword: true)
                     
@@ -45,6 +46,10 @@ struct ProfileSignInView: View {
                         ConfirmButtonView(buttonLabel: "Sign in", width: 150)
                             .padding()
                     }
+                    
+                    Text(errorMessage)
+                        .font(.body.bold())
+                        .foregroundColor(.red)
                     
                     HStack {
                         Text("Don't have account")
@@ -69,26 +74,29 @@ struct ProfileSignInView: View {
                         .frame(maxWidth: .infinity)
                         .padding()
                     
+                    Text(user?.email ?? "none")
+                    
+                    if (isDownloading) {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                    }
+                    
                     Button {
-                        fireStoreManager.getData(viewContext: viewContext)
+                        isDownloading = true
+                        fireStoreManager.syncData(plans: plans.map { $0.self }, viewContext: viewContext, userId: userId) {
+                            isDownloading = false
+                        }
                     } label: {
                         ConfirmButtonView(buttonLabel: "Sync data", width: 150)
                             .padding()
                     }
                     
                     Button {
-                        // TODO logout
+                        logout()
                         isUserLoggedIn = false
                     } label: {
                         ConfirmButtonView(buttonLabel: "Log out", width: 150)
                             .padding()
-                    }
-                    
-                    Button {
-                        fireStoreManager.uploadData(plans: plans.map {$0.self}, viewContext: viewContext, userId: userId)
-                    } label: {
-                        Text("delete data")
-                            .foregroundColor(.red)
                     }
                     
                     Spacer()
@@ -100,6 +108,7 @@ struct ProfileSignInView: View {
             .onAppear {
                 Auth.auth().addStateDidChangeListener { auth, user in
                     if user != nil {
+                        self.user = user
                         isUserLoggedIn = true
                         userId = user!.uid
                     }
@@ -112,14 +121,20 @@ struct ProfileSignInView: View {
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
             if (error != nil) {
                 print(error!.localizedDescription)
+                errorMessage = "Invalid email or password"
             } else {
-                fireStoreManager.getData(viewContext: viewContext)
+                errorMessage = ""
             }
         }
     }
     
     func logout() {
-    
+        isUserLoggedIn = false
+        user = nil
+        email = ""
+        password = ""
+        do { try Auth.auth().signOut() }
+        catch { print("already logged out") }
     }
 }
 

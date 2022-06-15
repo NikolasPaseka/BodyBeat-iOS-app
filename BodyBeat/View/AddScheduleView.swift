@@ -38,7 +38,7 @@ struct AddScheduleView: View {
                 
                 DatePicker("Time", selection: $selectedTime, displayedComponents: .hourAndMinute)
                     .foregroundColor(.white)
-                    .frame(width: 150)
+                    .frame(width: 170)
             }
             Spacer()
             Button {

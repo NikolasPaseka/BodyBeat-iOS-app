@@ -172,7 +172,7 @@ struct MonthlyProgressView: View {
                     .opacity(0.20)
                     .foregroundColor(.gray)
                 Circle()
-                    .trim(from: 0.0, to: CGFloat(min(monthlyCompletion, 1.0)))
+                    .trim(from: 0.0, to: CGFloat(min(Double(monthlyCompletion), 1.0)))
                     .stroke(style: StrokeStyle(lineWidth: 12.0, lineCap: .round, lineJoin: .round))
                     .foregroundColor(Color.lighterGreen)
                     .rotationEffect(Angle(degrees: 270))
@@ -222,7 +222,11 @@ struct MonthlyProgressView: View {
         
         let filteredLog = workoutLogs.filter { $0.date?.month == selectedDate.month && $0.date?.year == selectedDate.year}
         
-        return Double(filteredLog.count)/Double(numberOfSchedules)
+        if numberOfSchedules != 0 {
+            return Double(filteredLog.count)/Double(numberOfSchedules)
+        } else {
+                return 0.0
+        }
     }
 }
 

@@ -12,14 +12,30 @@ struct ExerciseListView: View {
     @Binding var exercises: [Exercise]
     @State var isNewExerciseVisible: Bool = false
     
+    @State var selectedExercise: Exercise?
+    
     var body: some View {
         List {
             ForEach(exercises) { exercise in
-                VStack {
-                    Text(exercise.title ?? "no title")
-                    Text("\(exercise.sets) x \(exercise.repeats)")
-                        .font(.caption)
-                        .foregroundColor(.gray)
+                Button {
+                    selectedExercise = exercise
+                    isNewExerciseVisible = true
+                } label: {
+                    HStack {
+                        VStack {
+                            Text(exercise.title ?? "no title")
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            Text("\(exercise.sets) x \(exercise.repeats)")
+                                .font(.caption)
+                                .foregroundColor(.gray)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(.gray)
+                    }
+                    
                 }
             }
             .onDelete(perform: delete)
@@ -38,7 +54,7 @@ struct ExerciseListView: View {
             }
         }
         .sheet(isPresented: $isNewExerciseVisible) {
-            NewExerciseView(exercises: $exercises, isNewExerciseVisible: $isNewExerciseVisible)
+            NewExerciseView(exercises: $exercises, isNewExerciseVisible: $isNewExerciseVisible, exercise: $selectedExercise)
         }
     }
     

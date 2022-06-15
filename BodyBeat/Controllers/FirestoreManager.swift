@@ -15,11 +15,13 @@ class FirestoreManager: ObservableObject {
     
     init() {}
     
-    func getData(viewContext: NSManagedObjectContext) {
+    func syncData(plans: [Plan], viewContext: NSManagedObjectContext, userId: String, completionHandler: @escaping () -> Void) {
         var plansId: [String] = []
+        var logsId: [String] = []
         
         let db = Firestore.firestore()
-        let ref = db.collection("Plan")
+        let refLog = db.collection("WorkoutLog").whereField("userId", isEqualTo: userId)
+        let ref = db.collection("Plan").whereField("userId", isEqualTo: userId)
         let refExercise = db.collection("Exercise")
         let refSchedule = db.collection("Schedule")
         
@@ -32,6 +34,45 @@ class FirestoreManager: ObservableObject {
             }
         } catch {
             print(error)
+        }
+        
+        let requestLogs = NSFetchRequest<NSFetchRequestResult>(entityName: "WorkoutLog")
+        requestLogs.returnsObjectsAsFaults = false
+        do {
+            let result = try viewContext.fetch(requestLogs)
+            for data in result as! [NSManagedObject] {
+                logsId.append(data.value(forKey: "logId") as! String)
+            }
+        } catch {
+            print(error)
+        }
+        
+        refLog.getDocuments { snapshot, error in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            
+            if let snapshot = snapshot {
+                for document in snapshot.documents {
+                    let data = document.data()
+                    
+                    let logId = document.documentID
+                    if !logsId.contains(logId) {
+                        let log = WorkoutLog(context: viewContext)
+                        let time: Timestamp? = data["date"] as? Timestamp
+                        log.date = time?.dateValue()
+                        log.logId = logId
+                        
+                        do {
+                            try viewContext.save()
+                        } catch {
+                            let nsError = error as NSError
+                            print(nsError)
+                        }
+                    }
+                }
+            }
         }
         
         ref.getDocuments { snapshot, error in
@@ -114,8 +155,11 @@ class FirestoreManager: ObservableObject {
                         }
                     }
                 }
+                completionHandler()
             }
         }
+        
+        uploadData(plans: plans, viewContext: viewContext, userId: userId)
     }
     
     func getUploadedPlansId(completionHandler: @escaping ([String]) -> Void) {
@@ -142,7 +186,6 @@ class FirestoreManager: ObservableObject {
     }
     
     func uploadData(plans: [Plan], viewContext: NSManagedObjectContext, userId: String) {
-        //deleteData()
         
         getUploadedPlansId { plansId in
             print(plansId)

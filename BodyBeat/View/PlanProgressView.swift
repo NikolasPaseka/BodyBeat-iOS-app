@@ -43,6 +43,7 @@ struct PlanProgressView: View {
     
     func workoutDone() {
         let log = WorkoutLog(context: viewContext)
+        log.logId = HashGenerator().getRandomHash()
         log.date = Date.now
 
         do {
@@ -98,9 +99,16 @@ struct PlanProgressView: View {
         .navigationTitle(plan.title ?? "no title")
         .background(Color.backgroundColor)
         .sheet(isPresented: $isProgressBarPresented) {
-            ProgressBarView(timeRemaining: State(initialValue: Int(plan.timerExercise)),
+            if (currentSet < currentExercise.sets) {
+            ProgressBarView(timeRemaining: State(initialValue: Int(plan.timerSeries)),
                             isPresenting: $isProgressBarPresented)
                 .padding(50)
+            }
+            else {
+                ProgressBarView(timeRemaining: State(initialValue: Int(plan.timerExercise)),
+                                isPresenting: $isProgressBarPresented)
+                    .padding(50)
+            }
         }
         .sheet(isPresented: $isPlanProgressDonePresented) {
             PlanProgressDoneView(plan: plan)

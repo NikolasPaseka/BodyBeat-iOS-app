@@ -21,11 +21,12 @@
     </entity>
     <entity name="WorkoutLog" representedClassName="WorkoutLog" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="logId" optional="YES" attributeType="String"/>
     </entity>
     <elements>
         <element name="Exercise" positionX="-105.38671875" positionY="-76.62109375" width="125.734375" height="89"/>
         <element name="Plan" positionX="-417.5" positionY="14.0859375" width="128" height="119"/>
         <element name="Schedule" positionX="-216" positionY="9" width="128" height="74"/>
-        <element name="WorkoutLog" positionX="-261" positionY="18" width="128" height="44"/>
+        <element name="WorkoutLog" positionX="-261" positionY="18" width="128" height="59"/>
     </elements>
 </model>

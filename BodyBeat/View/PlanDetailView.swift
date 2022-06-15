@@ -28,12 +28,30 @@ struct PlanDetailView: View {
     }
     
     func getExercisesArr() -> [Exercise] {
-        return exercises.map { $0.self }
+        var arr = exercises.map { $0.self }
+        if (arr.count > 0) {
+            arr.removeFirst()
+        }
+        return arr
     }
     
     func getFirstExercise() -> Exercise {
         var arr = exercises.map { $0.self }
-        return arr.removeFirst()
+        if (arr.count > 0) {
+            return arr.removeFirst()
+        } else {
+            return Exercise()
+        }
+    }
+    
+    func getTimerLabel(seconds: Int) -> String {
+        let minutes = seconds / 60
+        let seconds = seconds % 60
+        if seconds < 10 {
+            return "\(minutes):0\(seconds)"
+        } else {
+            return "\(minutes):\(seconds)"
+        }
     }
     
     var body: some View {
@@ -42,8 +60,15 @@ struct PlanDetailView: View {
                 .font(.title.bold())
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
-            Text("exercise: \(plan.timerExercise) seconds")
-            Text("series: \(plan.timerSeries) seconds")
+            HStack {
+                Image(systemName: "timer")
+                    .padding()
+                    .font(.title2)
+                VStack {
+                    Text("Between exercises: \(getTimerLabel(seconds: Int(plan.timerExercise)))")
+                    Text("Between series: \(getTimerLabel(seconds: Int(plan.timerSeries)))")
+                }
+            }
             
             NavigationLink(destination: PlanProgressView(plan: plan,
                                                          exercises: getExercisesArr(),

@@ -17,7 +17,7 @@ struct NewExerciseView: View {
     
     @Binding var isNewExerciseVisible: Bool
     
-    @State var exercise: Exercise?
+    @Binding var exercise: Exercise?
     
     func saveExercise() {
         var isEditing = true
@@ -28,42 +28,55 @@ struct NewExerciseView: View {
         exercise?.title = title
         exercise?.sets = Int16(sets)
         exercise?.repeats = Int16(repeats)
-        if !isEditing {
-            exercises.append(exercise!)
+        
+        if isEditing {
+            guard exercises.count > 0 else { return }
+            exercises.remove(at: exercises.firstIndex { $0 == exercise } ?? 0)
         }
+        exercises.append(exercise!)
     }
     
     var body: some View {
-        VStack {
-            RoundedTextField(placeHolder: "Exercise title", value: $title)
-            
-            HStack {
-                NumberPickerView(label: "Sets", maxInputRange: 10, selectedNumber: $sets)
-                Text("x")
-                    .padding(.top, 30)
-                NumberPickerView(label: "Repeats", maxInputRange: 50, selectedNumber: $repeats)
+        NavigationView {
+            VStack {
+                RoundedTextField(placeHolder: "Exercise title", value: $title)
+                
+                HStack {
+                    NumberPickerView(label: "Sets", maxInputRange: 10, selectedNumber: $sets)
+                    Text("x")
+                        .padding(.top, 30)
+                    NumberPickerView(label: "Repeats", maxInputRange: 50, selectedNumber: $repeats)
+                }
+                .padding()
+                Spacer()
+            }
+            .task {
+                if let exercise = exercise {
+                    title = exercise.title ?? "none"
+                    sets = Int(exercise.sets)
+                    repeats = Int(exercise.repeats)
+                }
             }
             .padding()
-            Spacer()
-        }
-        .task {
-            if let exercise = exercise {
-                title = exercise.title ?? "none"
-                sets = Int(exercise.sets)
-                repeats = Int(exercise.repeats)
-            }
-        }
-        .padding()
-        .background(Color.backgroundColor)
-        .navigationTitle("Add exercise")
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItemGroup(placement: .navigationBarTrailing) {
-                Button(action: {
-                    saveExercise()
-                    isNewExerciseVisible = false
-                }) {
-                    Text("Save")
+            .background(Color.backgroundColor)
+            .navigationTitle("Add exercise")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarLeading) {
+                    Button {
+                        isNewExerciseVisible = false
+                    } label: {
+                        Text("Cancel")
+                    }
+                }
+                
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        saveExercise()
+                        isNewExerciseVisible = false
+                    }) {
+                        Text("Save")
+                    }
                 }
             }
         }
@@ -74,7 +87,7 @@ struct NewExerciseView_Previews: PreviewProvider {
     static var exercises: [Exercise] = []
     
     static var previews: some View {
-        NewExerciseView(exercises: .constant(exercises), isNewExerciseVisible: .constant(false))
+        NewExerciseView(exercises: .constant(exercises), isNewExerciseVisible: .constant(false), exercise: .constant(nil))
             .preferredColorScheme(.dark)
     }
 }

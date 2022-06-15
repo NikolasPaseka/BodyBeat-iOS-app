@@ -11,6 +11,8 @@
 		38161C702857BB8800B3219B /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38161C6F2857BB8800B3219B /* View.swift */; };
 		38161C722858C11300B3219B /* TimerButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38161C712858C11300B3219B /* TimerButtonView.swift */; };
 		38161C752858E80A00B3219B /* HalfASheet in Frameworks */ = {isa = PBXBuildFile; productRef = 38161C742858E80A00B3219B /* HalfASheet */; };
+		38161C7928594B9D00B3219B /* LocationMapAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38161C7828594B9C00B3219B /* LocationMapAnnotationView.swift */; };
+		38161C7B2859535000B3219B /* ParkPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38161C7A2859535000B3219B /* ParkPreviewView.swift */; };
 		382B87E92825025200A71270 /* BodyBeatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382B87E82825025200A71270 /* BodyBeatApp.swift */; };
 		382B87EB2825025200A71270 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382B87EA2825025200A71270 /* ContentView.swift */; };
 		382B87ED2825025300A71270 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 382B87EC2825025300A71270 /* Assets.xcassets */; };
@@ -58,6 +60,8 @@
 		38142D2C2836DC12003AC9A0 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		38161C6F2857BB8800B3219B /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		38161C712858C11300B3219B /* TimerButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerButtonView.swift; sourceTree = "<group>"; };
+		38161C7828594B9C00B3219B /* LocationMapAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapAnnotationView.swift; sourceTree = "<group>"; };
+		38161C7A2859535000B3219B /* ParkPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkPreviewView.swift; sourceTree = "<group>"; };
 		382B87E52825025200A71270 /* BodyBeat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BodyBeat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		382B87E82825025200A71270 /* BodyBeatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyBeatApp.swift; sourceTree = "<group>"; };
 		382B87EA2825025200A71270 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -212,6 +216,8 @@
 				386A76712839954F0062DD94 /* RoundedTextField.swift */,
 				384E9372283BCD5C0057ACAF /* FormInputTextField.swift */,
 				38161C712858C11300B3219B /* TimerButtonView.swift */,
+				38161C7828594B9C00B3219B /* LocationMapAnnotationView.swift */,
+				38161C7A2859535000B3219B /* ParkPreviewView.swift */,
 			);
 			path = CustomComponent;
 			sourceTree = "<group>";
@@ -319,10 +325,12 @@
 				383D6D92282556120064D5F2 /* ExerciseListView.swift in Sources */,
 				38CD3440284534BB008A7B15 /* HashGenerator.swift in Sources */,
 				38CD343E2844D38E008A7B15 /* FirestoreManager.swift in Sources */,
+				38161C7B2859535000B3219B /* ParkPreviewView.swift in Sources */,
 				383D246F284228D8009AABFD /* MapView.swift in Sources */,
 				3859C86C283FD37900607A0F /* NewParkView.swift in Sources */,
 				386A76772839954F0062DD94 /* RoundedTextField.swift in Sources */,
 				384E9378283BE9680057ACAF /* PlanProgressDoneView.swift in Sources */,
+				38161C7928594B9D00B3219B /* LocationMapAnnotationView.swift in Sources */,
 				386A76752839954F0062DD94 /* SpacerLabelView.swift in Sources */,
 				38142D2D2836DC12003AC9A0 /* ProgressBarView.swift in Sources */,
 				38161C702857BB8800B3219B /* View.swift in Sources */,

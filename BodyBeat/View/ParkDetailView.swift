@@ -27,6 +27,11 @@ struct ParkDetailView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(maxWidth: .infinity)
+            } else {
+                Image(uiImage: UIImage(named: "preview")!)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(maxWidth: .infinity, maxHeight: 300)
             }
 
             Text("Location")
